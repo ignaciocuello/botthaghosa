@@ -119,6 +119,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
+    ice_cube (0.16.4)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -287,6 +288,7 @@ DEPENDENCIES
   capybara
   debug
   discordrb
+  ice_cube
   importmap-rails
   jbuilder
   puma (>= 5.0)
