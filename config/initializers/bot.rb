@@ -18,17 +18,20 @@ Bot.register_application_command(
   end
 end
 
-# TODO: add date using ice cube
 Bot.application_command(:template).group(:poll) do |group|
   group.subcommand(:finalize) do |event|
-    template = <<~TEMPLATE
-      #{event.options['sutta_id']} had the most votes, so we will be studying it in our next sutta discussion on {date}.
+    Time.use_zone('Australia/Melbourne') do
+      discussion_date = DiscussionDate.second(:saturday)
 
-      Don’t worry if your chosen sutta didn’t make it, we will put up the 2nd and 3rd most voted in the next poll.
+      template = <<~TEMPLATE
+        #{event.options['sutta_id']} had the most votes, so we will be studying it in our next sutta discussion on #{discussion_date}.
 
-      Thanks to everyone that cast their vote. 🙏🙏🙏
-    TEMPLATE
-    event.respond(content: template, ephemeral: true)
+        Don’t worry if your chosen sutta didn’t make it, we will put up the 2nd and 3rd most voted in the next poll.
+
+        Thanks to everyone that cast their vote. 🙏🙏🙏
+      TEMPLATE
+      event.respond(content: template, ephemeral: true)
+    end
   end
 end
 
