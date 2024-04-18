@@ -1,15 +1,20 @@
+# TODO: this isn't great, but it's something..
 class DiscussionDate
   START_DATE = '08/04/2024'.to_date
 
   class << self
     def first(day_name)
-      date = discussion_schedule(day_name).next_occurrence
-      format(date)
+      Time.use_zone('Australia/Melbourne') do
+        date = discussion_schedule(day_name).next_occurrence
+        format(date)
+      end
     end
 
     def second(day_name)
-      date = discussion_schedule(day_name).next_occurrence + 1.week
-      format(date)
+      Time.use_zone('Australia/Melbourne') do
+        date = discussion_schedule(day_name).next_occurrence + 1.week
+        format(date)
+      end
     end
 
     private
