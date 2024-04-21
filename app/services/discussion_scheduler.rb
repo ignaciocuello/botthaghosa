@@ -1,11 +1,11 @@
 # TODO: this isn't great, but it's something..
 class DiscussionScheduler
   # NOTE: not obvious this is Saturday
-  START_DATETIME = '2024-04-06 19:00:00'.to_time
+  START_DATETIME = '2024-04-06 19:00:00'.in_time_zone
 
   class << self
     def next_occurrence
-      discussion_schedule.next_occurrence.in_time_zone
+      discussion_schedule.next_occurrence.utc
     end
 
     private
