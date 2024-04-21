@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_21_092319) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_21_093428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "discussion_sessions", force: :cascade do |t|
+    t.datetime "occurs_on", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["occurs_on"], name: "index_discussion_sessions_on_occurs_on", unique: true
+  end
 
   create_table "documents", force: :cascade do |t|
     t.string "title", null: false
