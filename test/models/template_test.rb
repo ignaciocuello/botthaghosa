@@ -32,7 +32,7 @@ class TemplateTest < ActiveSupport::TestCase
 
       Just a quick heads up about our sutta discussion this **Saturday at 7PM** on **MN 11**. It's a great opportunity to dive into some deep Buddhist teachings and share your thoughts.
 
-      Join us on Zoom [here](https://us06web.zoom.us/j/84146622864?pwd=fvhLV0ZF7FxUdXzCWi8JsVOtPh8U7u.1). Hope to see you there for a meaningful and engaging conversation!
+      Join us on Zoom [here](#{Rails.application.credentials.dig(:zoom, :session_link)}). Hope to see you there for a meaningful and engaging conversation!
       ```
     TEMPLATE
 

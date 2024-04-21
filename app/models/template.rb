@@ -16,7 +16,7 @@ class Template
 
     Just a quick heads up about our sutta discussion this **Saturday at 7PM** on **%<sutta_id>s**. It's a great opportunity to dive into some deep Buddhist teachings and share your thoughts.
 
-    Join us on Zoom [here](https://us06web.zoom.us/j/84146622864?pwd=fvhLV0ZF7FxUdXzCWi8JsVOtPh8U7u.1). Hope to see you there for a meaningful and engaging conversation!
+    Join us on Zoom [here](%<session_link>s). Hope to see you there for a meaningful and engaging conversation!
     ```
   TEMPLATE
                      .freeze
@@ -38,6 +38,9 @@ class Template
   private
 
   def default_args
-    { discussion_date: DiscussionDate.second(:saturday) }
+    {
+      discussion_date: DiscussionDate.second(:saturday),
+      session_link: Rails.application.credentials.dig(:zoom, :session_link)
+    }
   end
 end
