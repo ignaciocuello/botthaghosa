@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_21_081941) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_21_092319) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "documents", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_documents_on_title", unique: true
+  end
 
   create_table "suttas", force: :cascade do |t|
     t.string "abbreviation", null: false
