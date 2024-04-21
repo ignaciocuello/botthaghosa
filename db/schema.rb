@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_21_093428) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_21_094248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_093428) do
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "discussion_session_id", null: false
+    t.index ["discussion_session_id"], name: "index_documents_on_discussion_session_id"
     t.index ["title"], name: "index_documents_on_title", unique: true
   end
 
@@ -34,7 +36,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_093428) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "discussion_session_id", null: false
     t.index ["abbreviation"], name: "index_suttas_on_abbreviation", unique: true
+    t.index ["discussion_session_id"], name: "index_suttas_on_discussion_session_id"
   end
 
+  add_foreign_key "documents", "discussion_sessions"
+  add_foreign_key "suttas", "discussion_sessions"
 end
