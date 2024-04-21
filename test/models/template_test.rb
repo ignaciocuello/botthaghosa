@@ -10,7 +10,7 @@ class TemplateTest < ActiveSupport::TestCase
         ```
         SN 56.11 had the most votes, so we will be studying it in our next sutta discussion on April 20.
 
-        Don’t worry if your chosen sutta didn’t make it, we will put up the 2nd and 3rd most voted in the next poll.
+        Don’t worry if your chosen sutta didn’t make it, we will put up unvoted suttas in subsequent polls.
 
         Thanks to everyone that cast their vote. 🙏🙏🙏
         ```

@@ -2,7 +2,7 @@ class Template
   POLL_FINALIZE = <<~TEMPLATE
     %<sutta_id>s had the most votes, so we will be studying it in our next sutta discussion on %<discussion_date>s.
 
-    Don’t worry if your chosen sutta didn’t make it, we will put up the 2nd and 3rd most voted in the next poll.
+    Don’t worry if your chosen sutta didn’t make it, we will put up unvoted suttas in subsequent polls.
 
     Thanks to everyone that cast their vote. 🙏🙏🙏
   TEMPLATE
