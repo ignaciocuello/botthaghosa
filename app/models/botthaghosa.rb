@@ -5,6 +5,9 @@ class Botthaghosa
       client_id: Rails.application.credentials.dig(:discord, :app_id),
       intents: [:server_messages]
     )
+    @discord_bot.ready do |_event|
+      @discord_bot.invisible
+    end
   end
 
   def setup_commands
