@@ -6,7 +6,7 @@ class Botthaghosa
       intents: [:server_messages]
     )
     @discord_bot.ready do |_event|
-      @discord_bot.invisible
+      @discord_bot.invisible if Rails.env.production?
     end
   end
 
