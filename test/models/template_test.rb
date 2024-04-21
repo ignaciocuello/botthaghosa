@@ -13,7 +13,6 @@ class TemplateTest < ActiveSupport::TestCase
         Don’t worry if your chosen sutta didn’t make it, we will put up the 2nd and 3rd most voted in the next poll.
 
         Thanks to everyone that cast their vote. 🙏🙏🙏
-
         ```
       TEMPLATE
 
@@ -21,7 +20,6 @@ class TemplateTest < ActiveSupport::TestCase
     end
   end
 
-  # NOTE: should probably get this off the credentials file
   test 'fill template for notifying community' do
     template = Template.new(:notify_community)
     filled = template.fill(sutta_id: 'MN 11')
