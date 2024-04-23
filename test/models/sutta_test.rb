@@ -19,4 +19,16 @@ class SuttaTest < ActiveSupport::TestCase
 
     assert_predicate sutta, :valid?
   end
+
+  test 'full title' do
+    sutta = build(:sutta, abbreviation: 'MN 1', title: 'The Root of All Things')
+
+    assert_equal 'MN 1 - The Root of All Things', sutta.full_title
+  end
+
+  test 'full title is just abbreviation when no official title' do
+    sutta = build(:sutta, abbreviation: 'MN 1', title: nil)
+
+    assert_equal 'MN 1', sutta.full_title
+  end
 end
