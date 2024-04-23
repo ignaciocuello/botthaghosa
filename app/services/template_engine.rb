@@ -18,6 +18,16 @@ class TemplateEngine
       Join us on Zoom [here](%<session_link>s). Hope to see you there for a meaningful and engaging conversation!
       ```
     TEMPLATE
+
+    DOCUMENT_SHARE = <<~TEMPLATE
+    ```
+    Hey everyone! :wave: Here’s the link to the session document for our upcoming sutta discussion happening this Saturday at 7PM! :clock7: 
+
+    - [%<sutta_full_title>s](%<document_link>s)
+
+    Looking forward to seeing you there!
+    ```
+    TEMPLATE
                        .freeze
 
     SET_SUTTA = <<~TEMPLATE
@@ -33,10 +43,12 @@ class TemplateEngine
       Thanks to everyone that cast their vote. 🙏🙏🙏
       ```
     TEMPLATE
+      .freeze
 
     SET_DOCUMENT = <<~TEMPLATE
-            Thanks! I have noted the discussion document for our next discussion on May 04 as [2024-05-04 MN 1](https://www.google.com).
+            Thanks! I have noted the discussion document for our next discussion on %<discussion_date>s as [%<document_title>s](%<document_link>s).
     TEMPLATE
+      .freeze
 
   # TODO: get these from the DB
   class << self
@@ -58,6 +70,8 @@ class TemplateEngine
         discussion_date: discussion_session.occurs_on.strftime('%B %d'),
         sutta_id: discussion_session.sutta&.abbreviation || '[NO SUTTA SET]',
         sutta_full_title: discussion_session.sutta&.full_title || '[NO SUTTA SET]',
+        document_link: discussion_session.document&.link || '[NO DOCUMENT SET]',
+        document_title: discussion_session.document&.title || '[NO DOCUMENT SET]',
         session_link: Rails.application.credentials.dig(:zoom, :session_link)
       }
     end
