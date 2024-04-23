@@ -18,8 +18,8 @@ class Commands
       TemplateEngine.generate(:notify_community, sutta_abbreviation:, sutta_title:)
     end
 
-    def template_document_share(document_link: nil, document_title: nil)
-      TemplateEngine.generate(:document_share, document_title:)
+    def template_document_share(document_link: nil)
+      TemplateEngine.generate(:document_share)
     end
   end
 end
