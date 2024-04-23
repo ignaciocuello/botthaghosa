@@ -47,11 +47,10 @@ class DiscussionSessionManagerTest < ActiveSupport::TestCase
     assert_difference -> { Document.count }, 1 do
       assert_difference -> { DiscussionSession.count }, 1 do
         discussion_session = DiscussionSessionManager.set_document_for_this_fortnight(
-          title: '20-04-2024 MN 9',
           link: 'docs.google.com/document/123'
         )
 
-        assert_equal '20-04-2024 MN 9', discussion_session.document.title
+        assert_equal '04-05-24', discussion_session.document.title
         assert_equal 'docs.google.com/document/123', discussion_session.document.link
       end
     end
@@ -60,21 +59,20 @@ class DiscussionSessionManagerTest < ActiveSupport::TestCase
   test 'set document for existing discussion session' do
     occurs_on = '2024-05-04 19:00:00'
     existing = create(:discussion_session, occurs_on: occurs_on.in_time_zone.utc)
+    sutta = create(:sutta, discussion_session: existing, abbreviation: 'MN 9')
     document = create(
       :document,
       discussion_session: existing,
-      title: '20-04-2024 MN 9',
       link: 'docs.google.com/document/123'
     )
 
     assert_no_difference -> { Document.count } do
       assert_no_difference -> { DiscussionSession.count } do
         discussion_session = DiscussionSessionManager.set_document_for_this_fortnight(
-          title: '20-04-2024 MN 9',
           link: 'docs.google.com/document/456'
         )
 
-        assert_equal '20-04-2024 MN 9', discussion_session.document.title
+        assert_equal '04-05-24 MN 9', discussion_session.document.title
         assert_equal 'docs.google.com/document/456', discussion_session.document.link
         assert_not Document.exists?(document.id)
       end
