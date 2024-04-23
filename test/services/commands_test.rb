@@ -40,14 +40,13 @@ class CommandsTest < ActiveSupport::TestCase
         assert_no_difference -> { DiscussionSession.count } do
           output = Commands.discussion_set_document(
             link: 'https://www.google.com',
-            title: '2024-05-04 MN 1'
           )
 
           expected = <<~TEMPLATE
             Thanks! I have noted the discussion document for our next discussion on May 04 as [2024-05-04 MN 1](https://www.google.com).
           TEMPLATE
           assert_equal 'https://www.google.com', DiscussionSession.last.document.link
-          assert_equal '2024-05-04 MN 1', DiscussionSession.last.document.title
+          assert_equal '04-05-24 MN 1', DiscussionSession.last.document.title
           assert_equal expected, output
         end
       end

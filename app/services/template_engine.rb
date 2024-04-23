@@ -33,6 +33,11 @@ class TemplateEngine
       Thanks to everyone that cast their vote. 🙏🙏🙏
       ```
     TEMPLATE
+
+    SET_DOCUMENT = <<~TEMPLATE
+            Thanks! I have noted the discussion document for our next discussion on May 04 as [2024-05-04 MN 1](https://www.google.com).
+    TEMPLATE
+
   # TODO: get these from the DB
   class << self
 
