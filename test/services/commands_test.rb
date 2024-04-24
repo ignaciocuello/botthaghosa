@@ -39,7 +39,7 @@ class CommandsTest < ActiveSupport::TestCase
       assert_no_difference -> { Sutta.count } do
         assert_no_difference -> { DiscussionSession.count } do
           output = Commands.discussion_set_document(
-            link: 'https://www.google.com',
+            link: 'https://www.google.com'
           )
 
           expected = <<~TEMPLATE
@@ -53,44 +53,28 @@ class CommandsTest < ActiveSupport::TestCase
     end
   end
 
-  test 'output poll finalization template' do
-    create_session
-    output = Commands.template_poll_finalize
-
-    expected = <<~TEMPLATE
-        ```
-        MN 1 had the most votes, so we will be studying it in our next sutta discussion on May 04.
-
-        Don’t worry if your chosen sutta didn’t make it, we will put up unvoted suttas in subsequent polls.
-
-        Thanks to everyone that cast their vote. 🙏🙏🙏
-        ```
-    TEMPLATE
-    assert_equal expected, output
-  end
-
   test 'output notify community template' do
     create_session
 
-    output = Commands.template_notify_community
+    output = Commands.discussion_template_notify_community
     expected = <<~TEMPLATE
-    ```
-    Hey everyone! :wave:
+      ```
+      Hey everyone! :wave:
 
-    Just a quick heads up about our sutta discussion this **Saturday at 7PM** on **MN 1 - The Root of All Things**. It's a great opportunity to dive into some deep Buddhist teachings and share your thoughts.
+      Just a quick heads up about our sutta discussion this **Saturday at 7PM** on **MN 1 - The Root of All Things**. It's a great opportunity to dive into some deep Buddhist teachings and share your thoughts.
 
-    Join us on Zoom [here](#{Rails.application.credentials.dig(:zoom, :session_link)}). Hope to see you there for a meaningful and engaging conversation!
-    ```
+      Join us on Zoom [here](#{Rails.application.credentials.dig(:zoom, :session_link)}). Hope to see you there for a meaningful and engaging conversation!
+      ```
     TEMPLATE
   end
 
   test 'output template document share' do
     create_session(with_document: true)
 
-    output = Commands.template_document_share
+    output = Commands.discussion_template_document_share
     expected = <<~TEMPLATE
       ```
-      Hey everyone! :wave: Here’s the link to the session document for our upcoming sutta discussion happening this Saturday at 7PM! :clock7: 
+      Hey everyone! :wave: Here’s the link to the session document for our upcoming sutta discussion happening this Saturday at 7PM! :clock7:#{' '}
 
       - [MN 1 - The Root of All Things](https://www.google.com)
 
@@ -104,7 +88,7 @@ class CommandsTest < ActiveSupport::TestCase
     travel_back
   end
 
-  private 
+  private
 
   def create_session(with_document: false)
     discussion_session = create(:discussion_session, occurs_on: '2024-05-04 19:00:00'.in_time_zone)

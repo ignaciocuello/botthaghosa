@@ -10,15 +10,11 @@ class Commands
       TemplateEngine.generate(:set_document)
     end
 
-    def template_poll_finalize(sutta_abbreviation: nil)
-      TemplateEngine.generate(:poll_finalize, sutta_abbreviation:)
+    def discussion_template_notify_community
+      TemplateEngine.generate(:notify_community)
     end
 
-    def template_notify_community(sutta_abbreviation: nil, sutta_title: nil)
-      TemplateEngine.generate(:notify_community, sutta_abbreviation:, sutta_title:)
-    end
-
-    def template_document_share(document_link: nil)
+    def discussion_template_document_share
       TemplateEngine.generate(:document_share)
     end
   end

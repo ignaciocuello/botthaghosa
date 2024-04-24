@@ -23,83 +23,59 @@ class Botthaghosa
   private
 
   def register_commands
-    @discord_bot.register_application_command(
-      :template,
-      'Get template messages',
-      server_id: Rails.application.credentials.dig(:discord, :server_id)
-    ) do |cmd|
-      cmd.subcommand_group(:poll, 'Get template messages for polls') do |group|
-        group.subcommand(:finalize, 'Get template message for finalizing a poll') do |sub|
-          sub.string(:sutta_id, 'The ID of the sutta that won the poll', required: false)
+    @discord_bot.register_application_command(:discussion, 'Commands for sutta discussion', server_id:) do |cmd|
+      cmd.subcommand_group(:set, 'Set values for the current discussion session') do |group|
+        group.subcommand(:sutta, 'Set the sutta for the current discussion session') do |sub|
+          sub.string(:abbreviation, 'The abbreviation of the sutta (e.g. MN 9)', required: true)
+          sub.string(:title, 'The title of the sutta (e.g. Right View)', required: true)
+        end
+
+        group.subcommand(:document, 'Set the document link for the current discussion session') do |sub|
+          sub.string(:link, 'The link to the session document', required: true)
         end
       end
 
-      cmd.subcommand_group(:notify, 'Get template messages for notifying') do |group|
-        group.subcommand(:community, 'Get template message for notifying the community') do |sub|
-          sub.string(:sutta_id, 'The ID of the sutta that we will be discussing', required: false)
-          sub.string(:sutta_title, 'The ID of the sutta that we will be discussing', required: false)
-        end
-      end
-
-      cmd.subcommand_group(:document, 'Get template messages for documents') do |group|
-        group.subcommand(:share, 'Get template message for sharing a document') do |sub|
-          sub.string(:document_link, 'The link to the document', required: false)
-        end
-      end
-    end
-
-    @discord_bot.register_application_command(:session, 'Interact with the current discussion session') do |cmd|
-      cmd.subcommand_group(:sutta, 'Interact with the session sutta') do |group|
-        group.subcommand(:set, 'Set the sutta for the current discussion session') do |sub|
-          sub.string(:id, 'The abbreviation of the sutta', required: true)
-          sub.string(:title, 'The title of the sutta', required: false)
-        end
-      end
-
-      cmd.subcommand_group(:document, 'Set values for the current discussion session') do |group|
-        group.subcommand(:set, 'Interact witht the session sutta') do |sub|
-          sub.string(:link, 'Set the link for the current discussion session', required: true)
-        end
+      cmd.subcommand_group(:template, 'Get template messages') do |group|
+        group.subcommand(:notify_community,
+                         'Get template message for notifying the community about the upcoming session')
+        group.subcommand(:share_document,
+                         'Get template message for sharing the document link')
       end
     end
   end
 
   def define_commands
-    @discord_bot.application_command(:template).group(:poll) do |group|
-      group.subcommand(:finalize) do |event|
-        content = Commands.template_poll_finalize(sutta_abbreviation: event.options['sutta_id'])
-        event.respond(content:, ephemeral: true)
+    @discord_bot.application_command(:discussion) do |cmd|
+      cmd.group(:set) do |group|
+        group.subcommand(:sutta) do |event|
+          content = Commands.discussion_set_sutta(
+            abbreviation: event.options['abbreviation'],
+            title: event.options['title']
+          )
+          event.respond(content:, ephemeral: true)
+        end
+
+        group.subcommand(:document) do |event|
+          content = Commands.discussion_set_document(link: event.options['link'])
+          event.respond(content:, ephemeral: true)
+        end
+      end
+
+      cmd.group(:template) do |group|
+        group.subcommand(:notify_community) do |event|
+          content = Commands.template_notify_community
+          event.respond(content:, ephemeral: true)
+        end
+
+        group.subcommand(:share_document) do |event|
+          content = Commands.template_document_share
+          event.respond(content:, ephemeral: true)
+        end
       end
     end
+  end
 
-    @discord_bot.application_command(:template).group(:notify) do |group|
-      group.subcommand(:community) do |event|
-        content = Commands.template_notify_community(sutta_abbreviation: event.options['sutta_id'],
-                                                     sutta_title: event.options['sutta_title'])
-        event.respond(content:, ephemeral: true)
-      end
-    end
-
-    @discord_bot.application_command(:template).group(:document) do |group|
-      group.subcommand(:share) do |event|
-        content = Commands.template_document_share(document_link: event.options['document_link'])
-
-        event.respond(content:, ephemeral: true)
-      end
-    end
-
-    @discord_bot.application_command(:session).group(:sutta) do |group|
-      group.subcommand(:set) do |event|
-        content = Commands.discussion_set_sutta(abbreviation: event.options['id'], title: event.options['title'])
-        event.respond(content:, ephemeral: true)
-      end
-    end
-
-    @discord_bot.application_command(:session).group(:document) do |group|
-      group.subcommand(:set) do |event|
-        content = Commands.discussion_set_document(link: event.options['link'])
-        event.respond(content:, ephemeral: true)
-      end
-    end
+  def server_id
+    Rails.application.credentials.dig(:discord, :server_id)
   end
 end
