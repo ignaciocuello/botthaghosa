@@ -15,8 +15,7 @@ class Botthaghosa
     define_commands
   end
 
-  def run
-    # puts "invite_url: #{@discord_bot.invite_url}"
+  def run_in_background
     background = true
     @discord_bot.run(background)
   end
