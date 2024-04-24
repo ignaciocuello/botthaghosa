@@ -5,6 +5,10 @@ class Commands
       TemplateEngine.generate(:set_sutta)
     end
 
+    def discussion_get_document
+      TemplateEngine.generate(:get_document)
+    end
+
     def discussion_set_document(link:)
       session = DiscussionSessionManager.set_document_for_this_fortnight(link:)
       TemplateEngine.generate(:set_document)

@@ -1,25 +1,20 @@
 class TemplateEngine
-  POLL_FINALIZE = <<~TEMPLATE
-    ```
-    %<sutta_id>s had the most votes, so we will be studying it in our next sutta discussion on %<discussion_date>s.
-
-    Don’t worry if your chosen sutta didn’t make it, we will put up unvoted suttas in subsequent polls.
-
-    Thanks to everyone that cast their vote. 🙏🙏🙏
-    ```
-  TEMPLATE
-                  .freeze
   NOTIFY_COMMUNITY = <<~TEMPLATE
+    Here is a message that you can use to notify the community about the upcoming session in #general (just click on the copy button on the top right):
+
     ```
     Hey everyone! :wave:
 
     Just a quick heads up about our sutta discussion this **Saturday at 7PM** on **%<sutta_full_title>s**. It's a great opportunity to dive into some deep Buddhist teachings and share your thoughts.
 
-    Join us on Zoom [here](%<session_link>s). Hope to see you there for a meaningful and engaging conversation!
+    Join us on Zoom [here](%<zoom_session_link>s). Hope to see you there for a meaningful and engaging conversation!
     ```
   TEMPLATE
+                     .freeze
 
   DOCUMENT_SHARE = <<~TEMPLATE
+    Here is a message that you can use to share the document with everyone in #sutta_discussions (just click on the copy button on the top right):
+
     ```
     Hey everyone! :wave: Here’s the link to the session document for our upcoming sutta discussion happening this Saturday at 7PM! :clock7:#{' '}
 
@@ -31,12 +26,12 @@ class TemplateEngine
                    .freeze
 
   SET_SUTTA = <<~TEMPLATE
-    I have noted the sutta for our next discussion on %<discussion_date>s as "%<sutta_full_title>s".
+    I have noted the sutta for our next discussion on **%<discussion_date>s** as **"%<sutta_full_title>s"**.
 
     Here is a message that you can use to notify the community in #announcements (just click on the copy button on the top right):
 
     ```
-    %<sutta_id>s had the most votes, so we will be studying it in our next sutta discussion on %<discussion_date>s.
+    %<sutta_abbreviation>s had the most votes, so we will be studying it in our next sutta discussion on %<discussion_date>s.
 
     Don’t worry if your chosen sutta didn’t make it, we will put up unvoted suttas in subsequent polls.
 
@@ -47,8 +42,16 @@ class TemplateEngine
 
   SET_DOCUMENT = <<~TEMPLATE
     Thanks! I have noted the discussion document for our next discussion on %<discussion_date>s as [%<document_title>s](%<document_link>s).
+
+    If you need quick access to it again, just type:
+
+    ```
+    /discussion get document
+    ```
   TEMPLATE
                  .freeze
+
+  GET_DOCUMENT = '[%<document_title>s](%<document_link>s)'.freeze
 
   # TODO: get these from the DB
   class << self
@@ -64,15 +67,14 @@ class TemplateEngine
     private
 
     def default_args
-      # NOTE: this should just use find not find or create
       discussion_session = DiscussionSessionManager.session_for_this_fortnight
       {
         discussion_date: discussion_session.occurs_on.strftime('%B %d'),
-        sutta_id: discussion_session.sutta&.abbreviation || '[NO SUTTA SET]',
+        sutta_abbreviation: discussion_session.sutta&.abbreviation || '[NO SUTTA SET]',
         sutta_full_title: discussion_session.sutta&.full_title || '[NO SUTTA SET]',
         document_link: discussion_session.document&.link || '[NO DOCUMENT SET]',
         document_title: discussion_session.document&.title || '[NO DOCUMENT SET]',
-        session_link: Rails.application.credentials.dig(:zoom, :session_link)
+        zoom_session_link: Rails.application.credentials.dig(:zoom, :session_link)
       }
     end
   end

@@ -36,6 +36,18 @@ class CommandsTest < ActiveSupport::TestCase
     end
   end
 
+  test 'get sutta discussion document when session exists' do
+    create_session(with_document: true)
+
+    output = Commands.discussion_get_document
+    assert_includes output, '04-05-24 MN 1'
+  end
+
+  test 'get sutta discussion document when session does not exist' do
+    output = Commands.discussion_get_document
+    assert_includes output, '[NO DOCUMENT SET]'
+  end
+
   test 'output notify community template' do
     create_session
     assert_includes Commands.discussion_template_notify_community, 'Join us on Zoom'

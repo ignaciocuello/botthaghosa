@@ -35,6 +35,10 @@ class Botthaghosa
         end
       end
 
+      cmd.subcommand_group(:get, 'Get values for the current discussion session') do |group|
+        group.subcommand(:document, 'Get the document link for the current discussion session')
+      end
+
       cmd.subcommand_group(:template, 'Get template messages') do |group|
         group.subcommand(:notify_community,
                          'Get template message for notifying the community about the upcoming session')
@@ -56,6 +60,13 @@ class Botthaghosa
 
       group.subcommand(:document) do |event|
         content = Commands.discussion_set_document(link: event.options['link'])
+        event.respond(content:, ephemeral: true)
+      end
+    end
+
+    @discord_bot.application_command(:discussion).group(:get) do |group|
+      group.subcommand(:document) do |event|
+        content = Commands.discussion_get_document
         event.respond(content:, ephemeral: true)
       end
     end
