@@ -45,32 +45,30 @@ class Botthaghosa
   end
 
   def define_commands
-    @discord_bot.application_command(:discussion) do |cmd|
-      cmd.group(:set) do |group|
-        group.subcommand(:sutta) do |event|
-          content = Commands.discussion_set_sutta(
-            abbreviation: event.options['abbreviation'],
-            title: event.options['title']
-          )
-          event.respond(content:, ephemeral: true)
-        end
-
-        group.subcommand(:document) do |event|
-          content = Commands.discussion_set_document(link: event.options['link'])
-          event.respond(content:, ephemeral: true)
-        end
+    @discord_bot.application_command(:discussion).group(:set) do |group|
+      group.subcommand(:sutta) do |event|
+        content = Commands.discussion_set_sutta(
+          abbreviation: event.options['abbreviation'],
+          title: event.options['title']
+        )
+        event.respond(content:, ephemeral: true)
       end
 
-      cmd.group(:template) do |group|
-        group.subcommand(:notify_community) do |event|
-          content = Commands.template_notify_community
-          event.respond(content:, ephemeral: true)
-        end
+      group.subcommand(:document) do |event|
+        content = Commands.discussion_set_document(link: event.options['link'])
+        event.respond(content:, ephemeral: true)
+      end
+    end
 
-        group.subcommand(:share_document) do |event|
-          content = Commands.template_document_share
-          event.respond(content:, ephemeral: true)
-        end
+    @discord_bot.application_command(:discussion).group(:template) do |group|
+      group.subcommand(:notify_community) do |event|
+        content = Commands.discussion_template_notify_community
+        event.respond(content:, ephemeral: true)
+      end
+
+      group.subcommand(:share_document) do |event|
+        content = Commands.discussion_template_document_share
+        event.respond(content:, ephemeral: true)
       end
     end
   end
