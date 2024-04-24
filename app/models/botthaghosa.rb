@@ -11,6 +11,7 @@ class Botthaghosa
   end
 
   def setup_commands
+    cleanup_commands
     register_commands
     define_commands
   end
@@ -21,6 +22,13 @@ class Botthaghosa
   end
 
   private
+
+  def cleanup_commands
+    return unless Rails.env.production?
+
+    @discord_bot.delete_application_command('1228318653439676547')
+    @discord_bot.delete_application_command('1232304907336421427', server_id:)
+  end
 
   def register_commands
     @discord_bot.register_application_command(:discussion, 'Commands for sutta discussion', server_id:) do |cmd|
