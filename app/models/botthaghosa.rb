@@ -26,8 +26,8 @@ class Botthaghosa
   def cleanup_commands
     return unless Rails.env.production?
 
-    @discord_bot.delete_application_command('1228318653439676547')
-    @discord_bot.delete_application_command('1232304907336421427', server_id:)
+    @discord_bot.delete_application_command('1232304907336421427')
+    @discord_bot.delete_application_command('1228318653439676547', server_id:)
   end
 
   def register_commands
