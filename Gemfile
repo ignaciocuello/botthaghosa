@@ -79,3 +79,5 @@ gem "googleauth", "~> 1.11"
 gem "redis", "~> 5.2"
 
 gem "hiredis", "~> 0.6.3"
+
+gem "google-apis-drive_v3", "~> 0.50.0"

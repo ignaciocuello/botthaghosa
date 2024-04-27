@@ -4,9 +4,26 @@ class OAuth2Controller < ApplicationController
   def authorize
     admin_id = current_admin.id.to_s
     credentials = @authorizer.get_credentials(admin_id, request)
-    return unless credentials.nil?
 
-    redirect_to @authorizer.get_authorization_url(login_hint: admin_id, request:), allow_other_host: true
+    if credentials.present?
+      drive = Google::Apis::DriveV3::DriveService.new
+      drive.authorization = credentials
+
+      private_folder = drive.list_files(q: "name = '2. Private'").files.first
+
+      year_folders = drive.list_files(q: "name = '2024'", fields: 'files(id, parents)').files
+      year_folder = year_folders.find { |f| f.parents.include?(private_folder.id) }
+      template_file = drive.list_files(q: "name = 'DD-MM-YY Sutta-ABBREV'").files.first
+      copied_file = drive.copy_file(template_file.id, fields: 'id, parents')
+
+      root_id = copied_file.parents.first
+      year_id = year_folder.id
+
+      drive.update_file(copied_file.id, nil, add_parents: year_id, remove_parents: root_id)
+    else
+      redirect_to @authorizer.get_authorization_url(login_hint: admin_id, request:),
+                  allow_other_host: true
+    end
   end
 
   def callback
