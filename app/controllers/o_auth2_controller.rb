@@ -10,17 +10,19 @@ class OAuth2Controller < ApplicationController
       drive = Google::Apis::DriveV3::DriveService.new
       drive.authorization = credentials
 
-      private_folder = drive.list_files(q: "name = '2. Private'").files.first
+      public_folder = drive.list_files(q: "name = '1. Public'").files.first
 
       year_folders = drive.list_files(q: "name = '2024'", fields: 'files(id, parents)').files
-      year_folder = year_folders.find { |f| f.parents.include?(private_folder.id) }
+      year_folder = year_folders.find { |f| f.parents.include?(public_folder.id) }
       template_file = drive.list_files(q: "name = 'DD-MM-YY Sutta-ABBREV'").files.first
       copied_file = drive.copy_file(template_file.id, fields: 'id, parents')
 
       root_id = copied_file.parents.first
       year_id = year_folder.id
 
-      file = Google::Apis::DriveV3::File.new(name: 'Hi!')
+      session_date = DiscussionSessionManager.session_for_this_fortnight.occurs_on.strftime('%d-%m-%Y')
+      sutta_abbreviation = DiscussionSessionManager.session_for_this_fortnight.sutta.abbreviation
+      file = Google::Apis::DriveV3::File.new(name: "#{session_date} #{sutta_abbreviation}")
       drive.update_file(copied_file.id, file, add_parents: year_id, remove_parents: root_id)
     else
       redirect_to @authorizer.get_authorization_url(login_hint: admin_id, request:),
