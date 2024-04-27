@@ -2,7 +2,7 @@ class OAuth2Controller < ApplicationController
   before_action :set_authorizer, only: :authorize
 
   def authorize
-    admin_id = current_admin.id
+    admin_id = current_admin.id.to_s
     credentials = @authorizer.get_credentials(admin_id, request)
     return unless credentials.nil?
 
@@ -22,8 +22,7 @@ class OAuth2Controller < ApplicationController
   def set_authorizer
     client_id = Google::Auth::ClientId.from_hash(Rails.application.credentials[:google])
     scope = ['https://www.googleapis.com/auth/drive']
-    # TODO: Change this to Redis, otherwise will have re-authenticate every time the server restarts
-    token_store = Google::Auth::Stores::FileTokenStore.new(file: 'tmp/tokens.yaml')
+    token_store = Google::Auth::Stores::RedisTokenStore.new(redis: Redis.new)
     @authorizer = Google::Auth::WebUserAuthorizer.new(
       client_id, scope, token_store, '/oauth2_callback'
     )

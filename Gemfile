@@ -75,3 +75,7 @@ end
 gem "devise", "~> 4.9"
 
 gem "googleauth", "~> 1.11"
+
+gem "redis", "~> 5.2"
+
+gem "hiredis", "~> 0.6.3"

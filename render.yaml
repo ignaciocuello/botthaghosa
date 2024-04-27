@@ -5,6 +5,9 @@ databases:
     plan: starter
 
 services:
+  - type: redis
+    name: cache
+    plan: starter
   - type: web
     name: botthaghosa
     runtime: ruby
@@ -21,3 +24,8 @@ services:
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: cache
+          proper: connectionString

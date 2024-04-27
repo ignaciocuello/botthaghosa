@@ -5,7 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-require 'googleauth/stores/file_token_store'
+require 'googleauth/stores/redis_token_store'
 
 require_relative '../lib/botthaghosa_launcher'
 
