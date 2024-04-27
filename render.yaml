@@ -7,7 +7,9 @@ databases:
 services:
   - type: redis
     name: cache
+    ipAllowList: []
     plan: starter
+    maxmemoryPolicy: allkeys-lfu
   - type: web
     name: botthaghosa
     runtime: ruby
@@ -28,4 +30,4 @@ services:
         fromService:
           type: redis
           name: cache
-          proper: connectionString
+          property: connectionString
