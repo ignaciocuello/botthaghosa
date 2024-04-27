@@ -6,6 +6,7 @@ class OAuth2Controller < ApplicationController
     credentials = @authorizer.get_credentials(admin_id, request)
 
     if credentials.present?
+      # TODO: use block |resp, err| to not block
       drive = Google::Apis::DriveV3::DriveService.new
       drive.authorization = credentials
 
@@ -19,7 +20,8 @@ class OAuth2Controller < ApplicationController
       root_id = copied_file.parents.first
       year_id = year_folder.id
 
-      drive.update_file(copied_file.id, nil, add_parents: year_id, remove_parents: root_id)
+      file = Google::Apis::DriveV3::File.new(name: 'Hi!')
+      drive.update_file(copied_file.id, file, add_parents: year_id, remove_parents: root_id)
     else
       redirect_to @authorizer.get_authorization_url(login_hint: admin_id, request:),
                   allow_other_host: true
