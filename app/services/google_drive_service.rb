@@ -20,7 +20,8 @@ class GoogleDriveService
       copied_file.id,
       Google::Apis::DriveV3::File.new(name: new_file_name),
       add_parents: destination_id,
-      remove_parents: origin_id
+      remove_parents: origin_id,
+      fields: 'webViewLink'
     )
   end
 

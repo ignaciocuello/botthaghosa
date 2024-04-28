@@ -10,6 +10,7 @@ class Commands
       TemplateEngine.generate(:get_document)
     end
 
+    # TODO: no longer needed
     def discussion_set_document(link:)
       DiscussionSessionManager.session_for_this_fortnight.set_document(link:)
       TemplateEngine.generate(:set_document)
@@ -30,9 +31,7 @@ class Commands
       session_date = session.occurs_on.strftime('%d-%m-%Y')
       sutta_abbreviation = session.sutta.abbreviation
 
-      from = 'DD-MM-YY Sutta-ABBREV'
-      to = "1. Public/2024/#{session_date} #{sutta_abbreviation}"
-      GoogleDriveCopyJob.perform_async(from, to)
+      CopySuttaTemplateJob.perform_async("1. Public/2024/#{session_date} #{sutta_abbreviation}")
     end
   end
 end
