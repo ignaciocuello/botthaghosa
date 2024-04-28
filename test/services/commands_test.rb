@@ -19,24 +19,6 @@ class CommandsTest < ActiveSupport::TestCase
     end
   end
 
-  test 'set sutta discussion document when session exists' do
-    create_session
-
-    assert_difference -> { Document.count }, 1 do
-      assert_no_difference -> { Sutta.count } do
-        assert_no_difference -> { DiscussionSession.count } do
-          output = Commands.discussion_set_document(
-            link: 'https://www.google.com'
-          )
-
-          assert_includes output, '[04-05-24 MN 1](https://www.google.com)'
-          assert_equal 'https://www.google.com', DiscussionSession.last.document.link
-          assert_equal '04-05-24 MN 1', DiscussionSession.last.document.title
-        end
-      end
-    end
-  end
-
   test 'get sutta discussion document when session exists' do
     create_session(with_document: true)
 

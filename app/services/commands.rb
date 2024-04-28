@@ -10,12 +10,6 @@ class Commands
       TemplateEngine.generate(:get_document)
     end
 
-    # TODO: no longer needed
-    def discussion_set_document(link:)
-      DiscussionSessionManager.session_for_this_fortnight.set_document(link:)
-      TemplateEngine.generate(:set_document)
-    end
-
     def discussion_template_notify_community
       TemplateEngine.generate(:notify_community)
     end

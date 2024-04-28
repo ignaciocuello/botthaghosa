@@ -29,14 +29,11 @@ class Botthaghosa
           sub.string(:abbreviation, 'The abbreviation of the sutta (e.g. MN 9)', required: true)
           sub.string(:title, 'The title of the sutta (e.g. Right View)', required: true)
         end
-
-        group.subcommand(:document, 'Set the document link for the current discussion session') do |sub|
-          sub.string(:link, 'The link to the session document', required: true)
-        end
       end
 
       cmd.subcommand_group(:get, 'Get values for the current discussion session') do |group|
         group.subcommand(:document, 'Get the document link for the current discussion session')
+        # TODO: get tasks also
       end
 
       cmd.subcommand_group(:template, 'Get template messages') do |group|
