@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :discussion_session do
-    occurs_on { Time.zone.today }
+    occurs_on { Time.zone.now }
   end
 end

@@ -1,7 +1,7 @@
 class Commands
   class << self
     def discussion_set_sutta(abbreviation:, title:)
-      session = DiscussionSessionManager.set_sutta_for_this_fortnight(abbreviation:, title:)
+      DiscussionSessionManager.session_for_this_fortnight.set_sutta(abbreviation:, title:)
       TemplateEngine.generate(:set_sutta)
     end
 
@@ -10,7 +10,7 @@ class Commands
     end
 
     def discussion_set_document(link:)
-      session = DiscussionSessionManager.set_document_for_this_fortnight(link:)
+      DiscussionSessionManager.session_for_this_fortnight.set_document(link:)
       TemplateEngine.generate(:set_document)
     end
 
