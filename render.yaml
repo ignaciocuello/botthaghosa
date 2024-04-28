@@ -10,6 +10,21 @@ services:
     ipAllowList: []
     plan: starter
     maxmemoryPolicy: allkeys-lfu
+
+  - type: worker
+    name: sidekiq-worker
+    runtime: ruby
+    buildCommand: 'bundle install'
+    startCommand: 'bundle exec sidekiq'
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: cache
+          property: connectionString
+
   - type: web
     name: botthaghosa
     runtime: ruby
