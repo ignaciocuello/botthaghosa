@@ -6,24 +6,14 @@ class OAuth2Controller < ApplicationController
     credentials = @authorizer.get_credentials(admin_id, request)
 
     if credentials.present?
-      # TODO: use block |resp, err| to not block
-      drive = Google::Apis::DriveV3::DriveService.new
-      drive.authorization = credentials
-
-      public_folder = drive.list_files(q: "name = '1. Public'").files.first
-
-      year_folders = drive.list_files(q: "name = '2024'", fields: 'files(id, parents)').files
-      year_folder = year_folders.find { |f| f.parents.include?(public_folder.id) }
-      template_file = drive.list_files(q: "name = 'DD-MM-YY Sutta-ABBREV'").files.first
-      copied_file = drive.copy_file(template_file.id, fields: 'id, parents')
-
-      root_id = copied_file.parents.first
-      year_id = year_folder.id
-
       session_date = DiscussionSessionManager.session_for_this_fortnight.occurs_on.strftime('%d-%m-%Y')
       sutta_abbreviation = DiscussionSessionManager.session_for_this_fortnight.sutta.abbreviation
-      file = Google::Apis::DriveV3::File.new(name: "#{session_date} #{sutta_abbreviation}")
-      drive.update_file(copied_file.id, file, add_parents: year_id, remove_parents: root_id)
+
+      drive = GoogleDriveService.new(credentials:)
+      drive.copy(
+        from: 'DD-MM-YY Sutta-ABBREV',
+        to: "1. Public/2024/#{session_date} #{sutta_abbreviation}"
+      )
     else
       redirect_to @authorizer.get_authorization_url(login_hint: admin_id, request:),
                   allow_other_host: true
