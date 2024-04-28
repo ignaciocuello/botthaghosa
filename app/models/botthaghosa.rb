@@ -11,6 +11,7 @@ class Botthaghosa
   end
 
   def setup_commands
+    clean_commands
     register_commands
     define_commands
   end
@@ -21,6 +22,16 @@ class Botthaghosa
   end
 
   private
+
+  def clean_commands
+    commands = @discord_bot.get_application_commands(server_id:)
+    puts 'COMMANDS'
+    commands.each do |command|
+      puts command
+      puts command.id
+      @discord_bot.delete_application_command(command.id, server_id:)
+    end
+  end
 
   def register_commands
     @discord_bot.register_application_command(:discussion, 'Commands for sutta discussion', server_id:) do |cmd|
@@ -52,11 +63,6 @@ class Botthaghosa
           abbreviation: event.options['abbreviation'],
           title: event.options['title']
         )
-        event.respond(content:, ephemeral: true)
-      end
-
-      group.subcommand(:document) do |event|
-        content = Commands.discussion_set_document(link: event.options['link'])
         event.respond(content:, ephemeral: true)
       end
     end
