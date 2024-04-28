@@ -26,19 +26,13 @@ class Commands
     private
 
     def copy_sutta_template
-      credentials = AuthManager.credentials
-      # TODO: let the user know we have not created the file later, rather than failing silently
-      return unless credentials.present?
-
       session = DiscussionSessionManager.session_for_this_fortnight
       session_date = session.occurs_on.strftime('%d-%m-%Y')
       sutta_abbreviation = session.sutta.abbreviation
 
-      drive = GoogleDriveService.new(credentials:)
-      drive.copy(
-        from: 'DD-MM-YY Sutta-ABBREV',
-        to: "1. Public/2024/#{session_date} #{sutta_abbreviation}"
-      )
+      from = 'DD-MM-YY Sutta-ABBREV'
+      to = "1. Public/2024/#{session_date} #{sutta_abbreviation}"
+      GoogleDriveCopyJob.perform_async(from, to)
     end
   end
 end
