@@ -23,7 +23,6 @@ services:
           name: cache
           property: connectionString
       - key: RAILS_MASTER_KEY
-        sync: false
 
   - type: web
     name: botthaghosa
