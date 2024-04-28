@@ -9,7 +9,7 @@ services:
     name: cache
     ipAllowList: []
     plan: starter
-    maxmemoryPolicy: allkeys-lfu
+    maxmemoryPolicy: noeviction
 
   - type: worker
     name: sidekiq-worker
