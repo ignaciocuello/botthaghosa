@@ -3,6 +3,7 @@ require 'test_helper'
 class CommandsTest < ActiveSupport::TestCase
   setup do
     travel_to '2024-04-23'.to_date
+    create(:admin, email: 'sutta-group@bsv.net.au')
   end
 
   test 'set sutta for discussion session and output template' do
