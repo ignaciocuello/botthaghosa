@@ -17,13 +17,13 @@ services:
     buildCommand: 'bundle install'
     startCommand: 'bundle exec sidekiq'
     envVars:
-      - key: RAILS_MASTER_KEY
-        sync: false
       - key: REDIS_URL
         fromService:
           type: redis
           name: cache
           property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
 
   - type: web
     name: botthaghosa
