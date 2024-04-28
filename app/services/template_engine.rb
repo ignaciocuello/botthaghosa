@@ -12,6 +12,26 @@ class TemplateEngine
   TEMPLATE
                      .freeze
 
+  NOTIFY_BSV = <<~TEMPLATE
+    Here is a message that you can use to notify the BSV communications team about the upcoming session by emailing **communications@bsv.net.au** and **secretary@bsv.net.au** (just click on the copy button on the top right):
+
+    ```
+    Hey,
+
+    Just posting the link to the sutta discussion document for this Saturday's session. In case you need to update anything on the newsletter.
+
+    %<document_link>s
+
+    The Sutta is %<sutta_full_title>s
+
+    Thank you
+
+    Regards,
+    Sutta discussion team
+    ```
+  TEMPLATE
+               .freeze
+
   DOCUMENT_SHARE = <<~TEMPLATE
     Here is a message that you can use to share the document with everyone in #sutta_discussions (just click on the copy button on the top right):
 

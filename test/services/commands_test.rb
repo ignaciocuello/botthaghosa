@@ -36,6 +36,11 @@ class CommandsTest < ActiveSupport::TestCase
     assert_includes Commands.discussion_template_notify_community, 'Join us on Zoom'
   end
 
+  test 'output notify bsv template' do
+    create_session
+    assert_includes Commands.discussion_template_notify_bsv, 'Just posting the link'
+  end
+
   test 'output template document share' do
     create_session(with_document: true)
     assert_includes Commands.discussion_template_document_share, 'Looking forward to seeing you there!'

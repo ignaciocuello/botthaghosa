@@ -25,10 +25,7 @@ class Botthaghosa
 
   def clean_commands
     commands = @discord_bot.get_application_commands(server_id:)
-    puts 'COMMANDS'
     commands.each do |command|
-      puts command
-      puts command.id
       @discord_bot.delete_application_command(command.id, server_id:)
     end
   end
@@ -36,7 +33,7 @@ class Botthaghosa
   def register_commands
     @discord_bot.register_application_command(:discussion, 'Commands for sutta discussion', server_id:) do |cmd|
       cmd.subcommand_group(:set, 'Set values for the current discussion session') do |group|
-        group.subcommand(:sutta, 'Set the sutta for the current discussion session') do |sub|
+        group.subcommand(:sutta, '1. Set the sutta for the current discussion session') do |sub|
           sub.string(:abbreviation, 'The abbreviation of the sutta (e.g. MN 9)', required: true)
           sub.string(:title, 'The title of the sutta (e.g. Right View)', required: true)
         end
@@ -49,9 +46,11 @@ class Botthaghosa
 
       cmd.subcommand_group(:template, 'Get template messages') do |group|
         group.subcommand(:notify_community,
-                         'Get template message for notifying the community about the upcoming session')
+                         '2. Get template message for notifying the community about the upcoming session')
+        group.subcommand(:notify_bsv,
+                         '3. Get template message for notifying the BSV communications team about the upcoming session')
         group.subcommand(:share_document,
-                         'Get template message for sharing the document link')
+                         '4. Get template message for sharing the document link')
       end
     end
   end
@@ -77,6 +76,11 @@ class Botthaghosa
     @discord_bot.application_command(:discussion).group(:template) do |group|
       group.subcommand(:notify_community) do |event|
         content = Commands.discussion_template_notify_community
+        event.respond(content:, ephemeral: true)
+      end
+
+      group.subcommand(:notify_bsv) do |event|
+        content = Commands.discussion_template_notify_bsv
         event.respond(content:, ephemeral: true)
       end
 

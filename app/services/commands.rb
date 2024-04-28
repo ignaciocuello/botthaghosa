@@ -14,6 +14,10 @@ class Commands
       TemplateEngine.generate(:notify_community)
     end
 
+    def discussion_template_notify_bsv
+      TemplateEngine.generate(:notify_bsv)
+    end
+
     def discussion_template_document_share
       TemplateEngine.generate(:document_share)
     end
