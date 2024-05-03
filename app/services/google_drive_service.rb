@@ -10,6 +10,7 @@ class GoogleDriveService
     *path, new_file_name = to.split('/')
     raise 'Too many directories in path' if path.size > 2
 
+    # TODO: we should probably also enforce the path for from
     from_file = files(name: from).first
     copied_file = @drive.copy_file(from_file.id, fields: 'id, parents')
 
