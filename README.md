@@ -27,15 +27,15 @@ You'll also have to request `master.key`.
 2. `brew services start redis`
 
 You will need to have sidekiq running on the side for async jobs.
-`bundle exec sidekiq`
+- `bundle exec sidekiq`
 
 Run the server and start the bot.
-`rails server`
+- `rails server`
 
 ### Running Tests
 
-`rails t`
+- `rails t`
 
 ### Deploying
 
-Deploys automatically on `render.com` with pushes to main.
+Deploys automatically on [Render](https://render.com/) with pushes to main.
