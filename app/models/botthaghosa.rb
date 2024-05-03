@@ -21,6 +21,15 @@ class Botthaghosa
     @discord_bot.run(background)
   end
 
+  def send_message(content)
+    channel_id = Rails.application.credentials.dig(:discord, :message_channel_id)
+    @discord_bot.send_message(channel_id, content)
+  end
+
+  def stop
+    @discord_bot.stop
+  end
+
   private
 
   def clean_commands

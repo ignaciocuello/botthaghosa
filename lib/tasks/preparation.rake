@@ -6,4 +6,11 @@ namespace :preparation do
 
     CopyTasksTemplateJob.perform_async("2. Private/2024/#{session_date} - Tasks [TEST]")
   end
+
+  task message: :environment do
+    bot = Botthaghosa.new
+    bot.run_in_background
+    bot.send_message('hello')
+    bot.stop
+  end
 end
