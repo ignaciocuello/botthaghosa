@@ -3,7 +3,7 @@ class OAuth2Controller < ApplicationController
     @authorizer = AuthManager.authorizer
     admin_id = current_admin.id.to_s
     credentials = @authorizer.get_credentials(admin_id, request)
-    return unless credentials.present?
+    return if credentials.present?
 
     redirect_to @authorizer.get_authorization_url(login_hint: admin_id, request:),
                 allow_other_host: true
