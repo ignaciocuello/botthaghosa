@@ -9,6 +9,7 @@ class OAuth2Controller < ApplicationController
                 allow_other_host: true
   end
 
+  # TODO: replace at routes level
   def callback
     target_url = Google::Auth::WebUserAuthorizer.handle_auth_callback_deferred(
       request
