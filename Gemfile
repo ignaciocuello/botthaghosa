@@ -70,16 +70,17 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
 end
 
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9'
 
-gem "googleauth", "~> 1.11"
+gem 'googleauth', '~> 1.11'
 
-gem "redis", "~> 5.2"
+gem 'redis', '~> 5.2'
 
-gem "hiredis", "~> 0.6.3"
+gem 'hiredis', '~> 0.6.3'
 
-gem "google-apis-drive_v3", "~> 0.50.0"
+gem 'google-apis-drive_v3', '~> 0.50.0'
 
-gem "sidekiq", "~> 7.2"
+gem 'sidekiq', '~> 7.2'
