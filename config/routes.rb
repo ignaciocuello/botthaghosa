@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   get 'authorize' => 'o_auth_2#authorize'
-  get 'oauth2_callback' => 'o_auth_2#callback'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  match '/oauth2_callback', to: Google::Auth::WebUserAuthorizer::CallbackApp, via: :all
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

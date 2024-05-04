@@ -11,7 +11,7 @@ class OAuth2ControllerTest < ActionDispatch::IntegrationTest
   test 'authorize redirects when credentials missing' do
     Google::Auth::WebUserAuthorizer.any_instance
                                    .expects(:get_credentials)
-                                   .with(@admin.id.to_s, anything)
+                                   .with(@admin.to_param, anything)
                                    .returns(nil)
     get authorize_path
     assert_response :redirect
@@ -20,7 +20,7 @@ class OAuth2ControllerTest < ActionDispatch::IntegrationTest
   test 'authorize renders when credentials present' do
     Google::Auth::WebUserAuthorizer.any_instance
                                    .expects(:get_credentials)
-                                   .with(@admin.id.to_s, anything)
+                                   .with(@admin.to_param, anything)
                                    .returns(Google::Auth::UserRefreshCredentials.new)
 
     get authorize_path
