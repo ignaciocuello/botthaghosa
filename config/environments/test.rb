@@ -66,4 +66,9 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = Rails.root.join('test', 'vcr')
   config.hook_into :webmock
+  %i[app_id token public_key server_id message_channel_id].each do |credential_name|
+    config.filter_sensitive_data("<DISCORD_#{credential_name.upcase}>") do
+      Rails.application.credentials.dig(:discord, credential_name)
+    end
+  end
 end

@@ -1,0 +1,352 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://discord.com/api/v9/users/@me
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 05 May 2024 04:09:12 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 87eddfaa3d815a7f-MEL
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cfruid=d76cdd2b68c41edb90bbb56d32e3e83025eda679-1714882152; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - __dcfduid=3aa5f8000a9511efbbbfb6088f60b6bf; Expires=Fri, 04-May-2029 04:09:12
+        GMT; Max-Age=157680000; Secure; HttpOnly; Path=/; SameSite=Lax
+      - __sdcfduid=3aa5f8000a9511efbbbfb6088f60b6bf03c501c95f3ae3465ac903ad58d9abb14d6249bef4a440a3703539ffd31e1c61;
+        Expires=Fri, 04-May-2029 04:09:12 GMT; Max-Age=157680000; Secure; HttpOnly;
+        Path=/; SameSite=Lax
+      - _cfuvid=7kACL1XNorJzK49FM_xzvEVpJAKFmAUcSRpEoCSlsg8-1714882152322-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      X-Content-Type-Options:
+      - nosniff
+      X-Ratelimit-Bucket:
+      - 78bb8553d9352a5a2f89f9def401287a
+      X-Ratelimit-Limit:
+      - '1000'
+      X-Ratelimit-Remaining:
+      - '999'
+      X-Ratelimit-Reset:
+      - '1714882152.197'
+      X-Ratelimit-Reset-After:
+      - '0.001'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=0AN0DT%2F5ICLsyHJt71NlXKjkCG6DBeUqi%2B%2Be4FWl2uAAulyubY41MtCHvMavkmnLpgH1p%2Bf63NUx39bM8XM9ZRTCX%2BsipVzP607I1CUxfL9js7UMA888Lt99pO8v"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"<DISCORD_APP_ID>","username":"local-botthaghosa","avatar":"9ef403049c8dc4378fa59c79f5a6f2cf","discriminator":"3998","public_flags":0,"flags":0,"bot":true,"banner":null,"accent_color":null,"global_name":null,"avatar_decoration_data":null,"banner_color":null,"clan":null,"mfa_enabled":false,"locale":"en-US","premium_type":0,"email":null,"verified":true,"bio":""}
+
+        '
+  recorded_at: Sun, 05 May 2024 04:09:11 GMT
+- request:
+    method: get
+    uri: https://discord.com/api/v9/applications/<DISCORD_APP_ID>/guilds/<DISCORD_SERVER_ID>/commands
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 05 May 2024 04:09:12 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfruid=d76cdd2b68c41edb90bbb56d32e3e83025eda679-1714882152; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - __dcfduid=3adacc880a9511efb6f7b6e7e663f6a5; Expires=Fri, 04-May-2029 04:09:12
+        GMT; Max-Age=157680000; Secure; HttpOnly; Path=/; SameSite=Lax
+      - __sdcfduid=3adacc880a9511efb6f7b6e7e663f6a57ef41e0342d898f0f447892b013f56d082bdd5f207fc64bb993da74cb0477304;
+        Expires=Fri, 04-May-2029 04:09:12 GMT; Max-Age=157680000; Secure; HttpOnly;
+        Path=/; SameSite=Lax
+      - _cfuvid=zj1XyM6BaT8Ju7i0xjAoC.a_trjHSPWa1cWswmI9FcU-1714882152679-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Ratelimit-Bucket:
+      - b4534d2461fcb2e2d83a853d9e887f1c
+      X-Ratelimit-Limit:
+      - '1000'
+      X-Ratelimit-Remaining:
+      - '999'
+      X-Ratelimit-Reset:
+      - '1714882152.534'
+      X-Ratelimit-Reset-After:
+      - '0.001'
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=%2F86v91bFzd1o2nwZD9iOQ%2BsW7svO9UTfEncehhy7lwGagtOWl3RqU4yCBnkDDa9IgpdZaDbG7p93LaaeQqAw1QBGAIFBKM0ZaDgo0Ly7be7ASz2Ti8voPW2Z6qhU"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87eddfac5c7c299f-MEL
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"id":"1236526404804542504","application_id":"<DISCORD_APP_ID>","version":"1236526404804542505","default_member_permissions":null,"type":1,"name":"discussion","description":"Commands
+        for sutta discussion","guild_id":"<DISCORD_SERVER_ID>","options":[{"type":2,"name":"set","description":"Set
+        values for the current discussion session","options":[{"type":1,"name":"sutta","description":"1.
+        Set the sutta for the current discussion session","options":[{"type":3,"name":"abbreviation","description":"The
+        abbreviation of the sutta (e.g. MN 9)","required":true},{"type":3,"name":"title","description":"The
+        title of the sutta (e.g. Right View)","required":true}]}]},{"type":2,"name":"get","description":"Get
+        values for the current discussion session","options":[{"type":1,"name":"document","description":"Get
+        the document link for the current discussion session"}]},{"type":2,"name":"template","description":"Get
+        template messages","options":[{"type":1,"name":"notify_community","description":"2.
+        Get template message for notifying the community about the upcoming session"},{"type":1,"name":"notify_bsv","description":"3.
+        Get template message for notifying the BSV communications team about the upcoming
+        session"},{"type":1,"name":"share_document","description":"4. Get template
+        message for sharing the document link"}]}],"nsfw":false}]
+
+        '
+  recorded_at: Sun, 05 May 2024 04:09:11 GMT
+- request:
+    method: delete
+    uri: https://discord.com/api/v9/applications/<DISCORD_APP_ID>/guilds/<DISCORD_SERVER_ID>/commands/1236526404804542504
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Sun, 05 May 2024 04:09:13 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfruid=bca55870d7d7eb45e40e1a09ee2bc3a48a937e26-1714882153; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - __dcfduid=3b1e27580a9511ef8febdea01c1a4b84; Expires=Fri, 04-May-2029 04:09:13
+        GMT; Max-Age=157680000; Secure; HttpOnly; Path=/; SameSite=Lax
+      - __sdcfduid=3b1e27580a9511ef8febdea01c1a4b8438fa7b781263b2b72992be2be78e3e31b9b6601aedc36cd297cabe3b55befa8f;
+        Expires=Fri, 04-May-2029 04:09:13 GMT; Max-Age=157680000; Secure; HttpOnly;
+        Path=/; SameSite=Lax
+      - _cfuvid=S54mvNEXJDfRjepVnrwRziP12M3ToSr_vyAIQ8SRPVQ-1714882153109-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Ratelimit-Bucket:
+      - 8a79c31d9be9f09c0560bdc30859c82d
+      X-Ratelimit-Limit:
+      - '5'
+      X-Ratelimit-Remaining:
+      - '4'
+      X-Ratelimit-Reset:
+      - '1714882156.914'
+      X-Ratelimit-Reset-After:
+      - '4.000'
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=v90e5lr9LoUUFpJ16FFoBYMUZzh2vjCgBDFFOdo3K4RpA9k5AdJwfJCOVIcVy5mvbLoWtE0YIk%2FPJbMcGezbxNCLEU%2FGxkZJByviUMEW8qI7Njg4RGz%2FEctBLl1n"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87eddfae7dfd1f5f-MEL
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Sun, 05 May 2024 04:09:11 GMT
+- request:
+    method: post
+    uri: https://discord.com/api/v9/applications/<DISCORD_APP_ID>/guilds/<DISCORD_SERVER_ID>/commands
+    body:
+      encoding: UTF-8
+      string: '{"name":"discussion","description":"Commands for sutta discussion","options":[{"type":2,"name":"set","description":"Set
+        values for the current discussion session","options":[{"type":1,"name":"sutta","description":"1.
+        Set the sutta for the current discussion session","options":[{"type":3,"name":"abbreviation","description":"The
+        abbreviation of the sutta (e.g. MN 9)","required":true},{"type":3,"name":"title","description":"The
+        title of the sutta (e.g. Right View)","required":true}]}]},{"type":2,"name":"get","description":"Get
+        values for the current discussion session","options":[{"type":1,"name":"document","description":"Get
+        the document link for the current discussion session","options":[]}]},{"type":2,"name":"template","description":"Get
+        template messages","options":[{"type":1,"name":"notify_community","description":"2.
+        Get template message for notifying the community about the upcoming session","options":[]},{"type":1,"name":"notify_bsv","description":"3.
+        Get template message for notifying the BSV communications team about the upcoming
+        session","options":[]},{"type":1,"name":"share_document","description":"4.
+        Get template message for sharing the document link","options":[]}]}],"default_permission":null,"type":1}'
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1232'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Sun, 05 May 2024 04:09:13 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfruid=bca55870d7d7eb45e40e1a09ee2bc3a48a937e26-1714882153; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - __dcfduid=3b5acadc0a9511ef8d20feb9cf9c1381; Expires=Fri, 04-May-2029 04:09:13
+        GMT; Max-Age=157680000; Secure; HttpOnly; Path=/; SameSite=Lax
+      - __sdcfduid=3b5acadc0a9511ef8d20feb9cf9c1381305e4a260f59db0e455219ab48e5ee8d70c8b407f56d881a7c6bf9500236095b;
+        Expires=Fri, 04-May-2029 04:09:13 GMT; Max-Age=157680000; Secure; HttpOnly;
+        Path=/; SameSite=Lax
+      - _cfuvid=OgSbe2tG9NiEj1_lvLOPVYAZ5.VE6bI2QsTlaHIdLKc-1714882153505-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Ratelimit-Bucket:
+      - d9825c191970ead7c158a4c613b27ce7
+      X-Ratelimit-Limit:
+      - '5'
+      X-Ratelimit-Remaining:
+      - '4'
+      X-Ratelimit-Reset:
+      - '1714882157.321'
+      X-Ratelimit-Reset-After:
+      - '4.000'
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=nnnxZXpIZdc3abE6RWdO5hlaf8exT9hvagJUsnc5j%2FbW9DDunij6zuPwrAn9W6Nm%2FUAV5WPYfxXelg5KzzL%2FyaQLUWy9XaWkeoq9C5mvI2z97j7mgGULyQRCYEZS"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87eddfb12e911f65-MEL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"1236530116444684379","application_id":"<DISCORD_APP_ID>","version":"1236530116444684380","default_member_permissions":null,"type":1,"name":"discussion","name_localizations":null,"description":"Commands
+        for sutta discussion","description_localizations":null,"guild_id":"<DISCORD_SERVER_ID>","options":[{"type":2,"name":"set","name_localizations":null,"description":"Set
+        values for the current discussion session","description_localizations":null,"options":[{"type":1,"name":"sutta","name_localizations":null,"description":"1.
+        Set the sutta for the current discussion session","description_localizations":null,"options":[{"type":3,"name":"abbreviation","name_localizations":null,"description":"The
+        abbreviation of the sutta (e.g. MN 9)","description_localizations":null,"required":true},{"type":3,"name":"title","name_localizations":null,"description":"The
+        title of the sutta (e.g. Right View)","description_localizations":null,"required":true}]}]},{"type":2,"name":"get","name_localizations":null,"description":"Get
+        values for the current discussion session","description_localizations":null,"options":[{"type":1,"name":"document","name_localizations":null,"description":"Get
+        the document link for the current discussion session","description_localizations":null}]},{"type":2,"name":"template","name_localizations":null,"description":"Get
+        template messages","description_localizations":null,"options":[{"type":1,"name":"notify_community","name_localizations":null,"description":"2.
+        Get template message for notifying the community about the upcoming session","description_localizations":null},{"type":1,"name":"notify_bsv","name_localizations":null,"description":"3.
+        Get template message for notifying the BSV communications team about the upcoming
+        session","description_localizations":null},{"type":1,"name":"share_document","name_localizations":null,"description":"4.
+        Get template message for sharing the document link","description_localizations":null}]}],"nsfw":false}
+
+        '
+  recorded_at: Sun, 05 May 2024 04:09:11 GMT
+recorded_with: VCR 6.2.0

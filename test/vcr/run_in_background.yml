@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://discord.com/api/v9/gateway
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 05 May 2024 03:56:33 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '35'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Ratelimit-Bucket:
+      - 0a6d458104b103c7be293cc9b284d9ee
+      X-Ratelimit-Limit:
+      - '100'
+      X-Ratelimit-Remaining:
+      - '99'
+      X-Ratelimit-Reset:
+      - '1714853868.243'
+      X-Ratelimit-Reset-After:
+      - '0.010'
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '27525'
+      Last-Modified:
+      - Sat, 04 May 2024 20:17:48 GMT
+      Expires:
+      - Sun, 05 May 2024 04:26:33 GMT
+      Cache-Control:
+      - public, max-age=1800
+      Accept-Ranges:
+      - bytes
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=NbYHVJNbh0W0WLjRHDrOEzJxL91qE1yTx1T5q4S0M0ACf3Ppt1O5ViDwbJt1OFMucEB8BYPCGZP353CR8ZYGE%2BJgf2ddFpqGEPuzf%2BhJnoLUg3pu8InSCCgaYRLt"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - __cfruid=ff205022364b37d92d2d2f69b68193a9f96f0261-1714881393; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - _cfuvid=A468C6quT0lU587o8xGrp2IdLTwdmrJ.HKI3L2YxDcw-1714881393697-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87edcd268bfb5ab4-MEL
+    body:
+      encoding: UTF-8
+      string: '{"url":"wss://gateway.discord.gg"}
+
+        '
+  recorded_at: Sun, 05 May 2024 03:56:28 GMT
+recorded_with: VCR 6.2.0
