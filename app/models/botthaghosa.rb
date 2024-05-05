@@ -42,6 +42,9 @@ class Botthaghosa
 
   def register_commands
     @discord_bot.register_application_command(:discussion, 'Commands for sutta discussion', server_id:) do |cmd|
+      cmd.subcommand_group(:start, 'Start activities related to preparation') do |group|
+        group.subcommand(:preparation, 'Start preparation for this session')
+      end
       cmd.subcommand_group(:set, 'Set values for the current discussion session') do |group|
         group.subcommand(:sutta, '1. Set the sutta for the current discussion session') do |sub|
           sub.string(:abbreviation, 'The abbreviation of the sutta (e.g. MN 9)', required: true)
@@ -66,6 +69,12 @@ class Botthaghosa
   end
 
   def define_commands
+    @discord_bot.application_command(:discussion).group(:start) do |group|
+      group.subcommand(:preparation) do |event|
+        content = Commands.discussion_start_preparation
+        event.respond(content:, ephemeral: true)
+      end
+    end
     @discord_bot.application_command(:discussion).group(:set) do |group|
       group.subcommand(:sutta) do |event|
         content = Commands.discussion_set_sutta(

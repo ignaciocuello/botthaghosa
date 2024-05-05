@@ -6,9 +6,21 @@ class CommandsTest < ActiveSupport::TestCase
     create(:admin, email: 'sutta-group@bsv.net.au')
   end
 
-  test 'set sutta for discussion session and output template' do
-    assert_difference -> { Sutta.count }, 1 do
+  test 'start discussion preparation' do
+    assert_difference -> { CopyTasksTemplateJob.jobs.size }, 1 do
       assert_difference -> { DiscussionSession.count }, 1 do
+        output = Commands.discussion_start_preparation
+
+        assert_includes output, 'On it!'
+      end
+    end
+  end
+
+  test 'set sutta for discussion session and output template' do
+    create_session(with_sutta: false)
+
+    assert_difference -> { CopySuttaTemplateJob.jobs.size }, 1 do
+      assert_difference -> { Sutta.count }, 1 do
         output = Commands.discussion_set_sutta(
           abbreviation: 'MN 1',
           title: 'The Root of All Things'
@@ -52,9 +64,12 @@ class CommandsTest < ActiveSupport::TestCase
 
   private
 
-  def create_session(with_document: false)
+  def create_session(with_sutta: true, with_document: false)
     discussion_session = create(:discussion_session, occurs_on: '2024-05-04 19:00:00'.in_time_zone)
-    sutta = create(:sutta, discussion_session:, abbreviation: 'MN 1', title: 'The Root of All Things')
+    if with_sutta
+      sutta = create(:sutta, discussion_session:, abbreviation: 'MN 1',
+                             title: 'The Root of All Things')
+    end
     if with_document
       create(:document, :session, title: '04-05-24 MN 1', discussion_session:,
                                   link: 'https://www.google.com')

@@ -72,6 +72,20 @@ class TemplateEngine
   TEMPLATE
                          .freeze
 
+  # TODO: @everyone
+  START_PREPARATION = <<~TEMPLATE
+    Hello all! 👋
+
+    Here is the task document for the upcoming session on %<discussion_date>s:
+
+    - [%<task_document_title>s](%<task_document_link>s)
+
+    Please put down your name against any role that you would like to do.
+
+    Thank you. 🙏
+  TEMPLATE
+                      .freeze
+
   GET_SESSION_DOCUMENT = '[%<session_document_title>s](%<session_document_link>s)'.freeze
 
   # TODO: get these from the DB
@@ -95,6 +109,8 @@ class TemplateEngine
         sutta_full_title: discussion_session.sutta&.full_title || '[NO SUTTA SET]',
         session_document_link: discussion_session.session_document&.link || '[NO SESSION DOCUMENT SET]',
         session_document_title: discussion_session.session_document&.title || '[NO SESSION DOCUMENT SET]',
+        task_document_link: discussion_session.task_document&.link || '[NO TASK DOCUMENT SET]',
+        task_document_title: discussion_session.task_document&.title || '[NO TASK DOCUMENT SET]',
         zoom_session_link: Rails.application.credentials.dig(:zoom, :session_link)
       }
     end

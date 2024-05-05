@@ -1,6 +1,12 @@
 class Commands
   class << self
     # TODO: change name to CommandsDiscussion.set_sutta, .get_document
+    def discussion_start_preparation
+      DiscussionSessionManager.session_for_this_fortnight
+      copy_task_template
+      'On it! 🤖'
+    end
+
     def discussion_set_sutta(abbreviation:, title:)
       DiscussionSessionManager.session_for_this_fortnight.set_sutta(abbreviation:, title:)
       copy_sutta_template
@@ -24,6 +30,13 @@ class Commands
     end
 
     private
+
+    def copy_task_template
+      session = DiscussionSessionManager.session_for_this_fortnight
+      session_date = session.occurs_on.strftime('%d-%m-%y')
+
+      CopyTasksTemplateJob.perform_async("2. Private/2024/#{session_date} - Tasks")
+    end
 
     def copy_sutta_template
       session = DiscussionSessionManager.session_for_this_fortnight
