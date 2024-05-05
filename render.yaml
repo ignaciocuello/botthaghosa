@@ -32,9 +32,9 @@ services:
   - type: cron
     name: preparation
     env: ruby
-    schedule: '0 12 * * *'
+    schedule: '*/5 * * * *'
     buildCommand: 'bundle install'
-    startCommand: 'bundle exec rake preparation:message'
+    startCommand: 'bundle exec rake preparation:start'
     envVars:
       - key: DATABASE_URL
         fromDatabase:
