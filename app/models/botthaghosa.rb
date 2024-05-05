@@ -1,6 +1,7 @@
 class Botthaghosa
-  def initialize
+  def initialize(log_mode: :normal)
     @discord_bot = Discordrb::Bot.new(
+      log_mode:,
       token: Rails.application.credentials.dig(:discord, :token),
       client_id: Rails.application.credentials.dig(:discord, :app_id),
       intents: [:server_messages]
