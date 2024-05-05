@@ -9,6 +9,7 @@ class Botthaghosa
     @discord_bot.ready do |_event|
       @discord_bot.invisible if Rails.env.production?
     end
+    puts @discord_bot.invite_url
   end
 
   def setup_commands
