@@ -89,7 +89,7 @@ http_interactions:
     uri: https://discord.com/api/v9/channels/<DISCORD_MESSAGE_CHANNEL_ID>/messages
     body:
       encoding: UTF-8
-      string: '{"content":"hello!","tts":false,"embeds":[],"nonce":null,"allowed_mentions":null,"message_reference":null,"components":null}'
+      string: '{"content":"<%= content %>","tts":false,"embeds":[],"nonce":null,"allowed_mentions":null,"message_reference":null,"components":null}'
     headers:
       Accept:
       - "*/*"
@@ -163,7 +163,7 @@ http_interactions:
       - 87edd002dd412996-MEL
     body:
       encoding: ASCII-8BIT
-      string: '{"type":0,"channel_id":"<DISCORD_MESSAGE_CHANNEL_ID>","content":"hello!","attachments":[],"embeds":[],"timestamp":"2024-05-05T03:58:31.039000+00:00","edited_timestamp":null,"flags":0,"components":[],"id":"1236527422275321917","author":{"id":"<DISCORD_APP_ID>","username":"local-botthaghosa","avatar":"9ef403049c8dc4378fa59c79f5a6f2cf","discriminator":"3998","public_flags":0,"flags":0,"bot":true,"banner":null,"accent_color":null,"global_name":null,"avatar_decoration_data":null,"banner_color":null,"clan":null},"mentions":[],"mention_roles":[],"pinned":false,"mention_everyone":false,"tts":false,"referenced_message":null}
+      string: '{"type":0,"channel_id":"<DISCORD_MESSAGE_CHANNEL_ID>","content":"<%= content %>","attachments":[],"embeds":[],"timestamp":"2024-05-05T03:58:31.039000+00:00","edited_timestamp":null,"flags":0,"components":[],"id":"1236527422275321917","author":{"id":"<DISCORD_APP_ID>","username":"local-botthaghosa","avatar":"9ef403049c8dc4378fa59c79f5a6f2cf","discriminator":"3998","public_flags":0,"flags":0,"bot":true,"banner":null,"accent_color":null,"global_name":null,"avatar_decoration_data":null,"banner_color":null,"clan":null},"mentions":[],"mention_roles":[],"pinned":false,"mention_everyone":false,"tts":false,"referenced_message":null}
 
         '
   recorded_at: Sun, 05 May 2024 03:58:24 GMT
