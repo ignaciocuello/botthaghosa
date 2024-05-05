@@ -41,35 +41,55 @@ class DiscussionSessionTest < ActiveSupport::TestCase
     assert_equal 'MN 1', discussion_session.sutta.abbreviation
   end
 
-  test 'set document' do
+  test 'set session document' do
     assert_difference -> { Document.count }, 1 do
       discussion_session = create(:discussion_session, occurs_on: '2024-05-04 19:00:00')
-      discussion_session.set_document(link: 'docs.google.com/document/123')
+      discussion_session.set_session_document(link: 'docs.google.com/document/123')
 
-      assert_equal '04-05-24', discussion_session.document.title
-      assert_equal 'docs.google.com/document/123', discussion_session.document.link
+      assert_equal '04-05-2024', discussion_session.session_document.title
+      assert_equal 'docs.google.com/document/123', discussion_session.session_document.link
     end
   end
 
-  test 'set document when sutta set' do
+  test 'set session document when sutta set' do
     discussion_session = create(
       :discussion_session,
       occurs_on: '2024-05-04 19:00:00',
       sutta: create(:sutta, abbreviation: 'MN 5')
     )
-    discussion_session.set_document(link: 'docs.google.com/document/123')
+    discussion_session.set_session_document(link: 'docs.google.com/document/123')
 
-    assert_equal '04-05-24 MN 5', discussion_session.document.title
-    assert_equal 'docs.google.com/document/123', discussion_session.document.link
+    assert_equal '04-05-2024 MN 5', discussion_session.session_document.title
+    assert_equal 'docs.google.com/document/123', discussion_session.session_document.link
   end
 
-  test 'set document, destroy any previously set document' do
-    discussion_session = create(:discussion_session, document: create(:document))
-    old_document = discussion_session.document
+  test 'set session document and destroy any previously set document' do
+    discussion_session = create(:discussion_session, documents: [create(:document, :session)])
+    old_document = discussion_session.session_document
 
-    discussion_session.set_document(link: 'docs.google.com/document/123')
+    discussion_session.set_session_document(link: 'docs.google.com/document/123')
 
     assert_predicate old_document, :destroyed?
-    assert_equal 'docs.google.com/document/123', discussion_session.document.link
+    assert_equal 'docs.google.com/document/123', discussion_session.session_document.link
+  end
+
+  test 'set task document' do
+    assert_difference -> { Document.count }, 1 do
+      discussion_session = create(:discussion_session, occurs_on: '2024-05-04 19:00:00')
+      discussion_session.set_task_document(link: 'docs.google.com/document/123')
+
+      assert_equal '04-05-24 - Tasks', discussion_session.task_document.title
+      assert_equal 'docs.google.com/document/123', discussion_session.task_document.link
+    end
+  end
+
+  test 'set task document and destroy any previously set document' do
+    discussion_session = create(:discussion_session, documents: [create(:document, :task)])
+    old_document = discussion_session.task_document
+
+    discussion_session.set_task_document(link: 'docs.google.com/document/123')
+
+    assert_predicate old_document, :destroyed?
+    assert_equal 'docs.google.com/document/123', discussion_session.task_document.link
   end
 end

@@ -50,7 +50,7 @@ class Botthaghosa
       end
 
       cmd.subcommand_group(:get, 'Get values for the current discussion session') do |group|
-        group.subcommand(:document, 'Get the document link for the current discussion session')
+        group.subcommand(:session_document, 'Get the session document link for the current discussion session')
         # TODO: get tasks also
       end
 
@@ -77,8 +77,8 @@ class Botthaghosa
     end
 
     @discord_bot.application_command(:discussion).group(:get) do |group|
-      group.subcommand(:document) do |event|
-        content = Commands.discussion_get_document
+      group.subcommand(:session_document) do |event|
+        content = Commands.discussion_get_session_document
         event.respond(content:, ephemeral: true)
       end
     end

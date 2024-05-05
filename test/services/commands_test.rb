@@ -19,16 +19,16 @@ class CommandsTest < ActiveSupport::TestCase
     end
   end
 
-  test 'get sutta discussion document when session exists' do
+  test 'get sutta discussion session document when session exists' do
     create_session(with_document: true)
 
-    output = Commands.discussion_get_document
+    output = Commands.discussion_get_session_document
     assert_includes output, '04-05-24 MN 1'
   end
 
   test 'get sutta discussion document when session does not exist' do
-    output = Commands.discussion_get_document
-    assert_includes output, '[NO DOCUMENT SET]'
+    output = Commands.discussion_get_session_document
+    assert_includes output, '[NO SESSION DOCUMENT SET]'
   end
 
   test 'output notify community template' do
@@ -55,7 +55,10 @@ class CommandsTest < ActiveSupport::TestCase
   def create_session(with_document: false)
     discussion_session = create(:discussion_session, occurs_on: '2024-05-04 19:00:00'.in_time_zone)
     sutta = create(:sutta, discussion_session:, abbreviation: 'MN 1', title: 'The Root of All Things')
-    create(:document, title: '04-05-24 MN 1', discussion_session:, link: 'https://www.google.com') if with_document
+    if with_document
+      create(:document, :session, title: '04-05-24 MN 1', discussion_session:,
+                                  link: 'https://www.google.com')
+    end
     discussion_session
   end
 end

@@ -20,7 +20,7 @@ class TemplateEngine
 
     Just posting the link to the sutta discussion document for this Saturday's session. In case you need to update anything on the newsletter.
 
-    %<document_link>s
+    %<session_document_link>s
 
     The Sutta is %<sutta_full_title>s
 
@@ -38,7 +38,7 @@ class TemplateEngine
     ```
     Hey everyone! :wave: Here’s the link to the session document for our upcoming sutta discussion happening this Saturday at 7PM! :clock7:#{' '}
 
-    - [%<sutta_full_title>s](%<document_link>s)
+    - [%<sutta_full_title>s](%<session_document_link>s)
 
     Looking forward to seeing you there!
     ```
@@ -60,8 +60,9 @@ class TemplateEngine
   TEMPLATE
               .freeze
 
-  SET_DOCUMENT = <<~TEMPLATE
-    Thanks! I have noted the discussion document for our next discussion on %<discussion_date>s as [%<document_title>s](%<document_link>s).
+  # NOTE: is this used?
+  SET_SESSION_DOCUMENT = <<~TEMPLATE
+    Thanks! I have noted the discussion document for our next discussion on %<discussion_date>s as [%<session_document_title>s](%<session_document_link>s).
 
     If you need quick access to it again, just type:
 
@@ -69,9 +70,9 @@ class TemplateEngine
     /discussion get document
     ```
   TEMPLATE
-                 .freeze
+                         .freeze
 
-  GET_DOCUMENT = '[%<document_title>s](%<document_link>s)'.freeze
+  GET_SESSION_DOCUMENT = '[%<session_document_title>s](%<session_document_link>s)'.freeze
 
   # TODO: get these from the DB
   class << self
@@ -92,8 +93,8 @@ class TemplateEngine
         discussion_date: discussion_session.occurs_on.strftime('%B %d'),
         sutta_abbreviation: discussion_session.sutta&.abbreviation || '[NO SUTTA SET]',
         sutta_full_title: discussion_session.sutta&.full_title || '[NO SUTTA SET]',
-        document_link: discussion_session.document&.link || '[NO DOCUMENT SET]',
-        document_title: discussion_session.document&.title || '[NO DOCUMENT SET]',
+        session_document_link: discussion_session.session_document&.link || '[NO SESSION DOCUMENT SET]',
+        session_document_title: discussion_session.session_document&.title || '[NO SESSION DOCUMENT SET]',
         zoom_session_link: Rails.application.credentials.dig(:zoom, :session_link)
       }
     end
