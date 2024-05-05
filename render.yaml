@@ -32,7 +32,7 @@ services:
   - type: cron
     name: preparation
     env: ruby
-    schedule: '*/10 * * * *'
+    schedule: '0 0 * * *'
     buildCommand: 'bundle install'
     startCommand: 'bundle exec rake preparation:start'
     envVars:
