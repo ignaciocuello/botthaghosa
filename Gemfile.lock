@@ -145,6 +145,8 @@ GEM
       representable (~> 3.0)
       retriable (>= 2.0, < 4.a)
       rexml
+    google-apis-docs_v1 (0.26.0)
+      google-apis-core (>= 0.14.0, < 2.a)
     google-apis-drive_v3 (0.50.0)
       google-apis-core (>= 0.14.0, < 2.a)
     google-cloud-env (2.1.1)
@@ -379,6 +381,7 @@ DEPENDENCIES
   discordrb
   factory_bot_rails
   faker
+  google-apis-docs_v1 (~> 0.26.0)
   google-apis-drive_v3 (~> 0.50.0)
   googleauth (~> 1.11)
   hiredis (~> 0.6.3)
