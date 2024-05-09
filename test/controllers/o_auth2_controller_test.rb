@@ -18,10 +18,14 @@ class OAuth2ControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'authorize renders when credentials present' do
+    credentials = Google::Auth::UserRefreshCredentials.new
+    credentials
+      .expects(:needs_access_token?)
+      .returns(false)
     Google::Auth::WebUserAuthorizer.any_instance
                                    .expects(:get_credentials)
                                    .with(@admin.to_param, anything)
-                                   .returns(Google::Auth::UserRefreshCredentials.new)
+                                   .returns(credentials)
 
     get authorize_path
     assert_response :success
