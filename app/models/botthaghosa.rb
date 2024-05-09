@@ -43,9 +43,6 @@ class Botthaghosa
 
   def register_commands
     @discord_bot.register_application_command(:discussion, 'Commands for sutta discussion', server_id:) do |cmd|
-      cmd.subcommand_group(:start, 'Start activities related to preparation') do |group|
-        group.subcommand(:preparation, 'Start preparation for this session')
-      end
       cmd.subcommand_group(:set, 'Set values for the current discussion session') do |group|
         group.subcommand(:sutta, '1. Set the sutta for the current discussion session') do |sub|
           sub.string(:abbreviation, 'The abbreviation of the sutta (e.g. MN 9)', required: true)
@@ -54,8 +51,7 @@ class Botthaghosa
       end
 
       cmd.subcommand_group(:get, 'Get values for the current discussion session') do |group|
-        group.subcommand(:session_document, 'Get the session document link for the current discussion session')
-        # TODO: get tasks also
+        group.subcommand(:session_links, 'Get the links for the current discussion session')
       end
 
       cmd.subcommand_group(:template, 'Get template messages') do |group|
@@ -70,12 +66,6 @@ class Botthaghosa
   end
 
   def define_commands
-    @discord_bot.application_command(:discussion).group(:start) do |group|
-      group.subcommand(:preparation) do |event|
-        content = Commands.discussion_start_preparation
-        event.respond(content:, ephemeral: true)
-      end
-    end
     @discord_bot.application_command(:discussion).group(:set) do |group|
       group.subcommand(:sutta) do |event|
         content = Commands.discussion_set_sutta(
@@ -87,8 +77,8 @@ class Botthaghosa
     end
 
     @discord_bot.application_command(:discussion).group(:get) do |group|
-      group.subcommand(:session_document) do |event|
-        content = Commands.discussion_get_session_document
+      group.subcommand(:session_links) do |event|
+        content = Commands.discussion_get_session_links
         event.respond(content:, ephemeral: true)
       end
     end

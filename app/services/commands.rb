@@ -1,6 +1,7 @@
 class Commands
   class << self
     # TODO: change name to CommandsDiscussion.set_sutta, .get_document
+    # TODO: move this out
     def discussion_start_preparation
       DiscussionSessionManager.session_for_this_fortnight
       copy_task_template
@@ -11,6 +12,10 @@ class Commands
       DiscussionSessionManager.session_for_this_fortnight.set_sutta(abbreviation:, title:)
       copy_sutta_template
       TemplateEngine.generate(:set_sutta)
+    end
+
+    def discussion_get_session_links
+      TemplateEngine.generate(:get_session_links)
     end
 
     def discussion_get_session_document

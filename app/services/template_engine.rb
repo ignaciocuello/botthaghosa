@@ -86,7 +86,16 @@ class TemplateEngine
   TEMPLATE
                       .freeze
 
-  GET_SESSION_DOCUMENT = '[%<session_document_title>s](%<session_document_link>s)'.freeze
+  GET_SESSION_LINKS = <<~TEMPLATE
+    Here are some links for the upcoming session:
+
+    - [%<session_document_title>s](%<session_document_link>s)
+
+    - [%<task_document_title>s](%<task_document_link>s)
+
+    - Zoom link: %<zoom_session_link>s
+  TEMPLATE
+                      .freeze
 
   # TODO: get these from the DB
   class << self

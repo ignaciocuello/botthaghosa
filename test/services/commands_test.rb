@@ -31,15 +31,15 @@ class CommandsTest < ActiveSupport::TestCase
     end
   end
 
-  test 'get sutta discussion session document when session exists' do
+  test 'get sutta discussion session links when session exists' do
     create_session(with_document: true)
 
-    output = Commands.discussion_get_session_document
+    output = Commands.discussion_get_session_links
     assert_includes output, '04-05-24 MN 1'
   end
 
-  test 'get sutta discussion document when session does not exist' do
-    output = Commands.discussion_get_session_document
+  test 'get sutta discussion links when session does not exist' do
+    output = Commands.discussion_get_session_links
     assert_includes output, '[NO SESSION DOCUMENT SET]'
   end
 
