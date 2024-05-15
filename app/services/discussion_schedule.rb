@@ -1,5 +1,5 @@
 # TODO: this isn't great, but it's something..
-class DiscussionScheduler
+class DiscussionSchedule
   # NOTE: not obvious this is Saturday
   START_DATETIME = '2024-04-06 19:00:00'.in_time_zone
 
