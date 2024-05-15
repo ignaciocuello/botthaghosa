@@ -1,17 +1,25 @@
-# TODO: this isn't great, but it's something..
 class DiscussionSchedule
-  # NOTE: not obvious this is Saturday
-  START_DATETIME = '2024-04-06 19:00:00'.in_time_zone
+  DAYNAMES_FROM_MONDAY = Date::DAYNAMES.rotate.map(&:downcase)
+  FIRST_PERIOD_END = 'Monday 2024-04-08 00:00:00'.in_time_zone
 
   class << self
-    def next_occurrence
-      discussion_schedule.next_occurrence.utc
+    def current(day_of_period)
+      day_of_period = :second_saturday if day_of_period == :session_date
+      week_position, day_name = day_of_period.to_s.split('_')
+
+      week_offset = week_position == 'first' ? 0 : 1
+      day_offset = DAYNAMES_FROM_MONDAY.find_index(day_name)
+
+      period_end = discussion_schedule.next_occurrence
+      period_start = period_end - 2.weeks
+
+      (period_start + week_offset.weeks + day_offset.days + 19.hours).utc
     end
 
     private
 
     def discussion_schedule
-      schedule = IceCube::Schedule.new(START_DATETIME) do |s|
+      schedule = IceCube::Schedule.new(FIRST_PERIOD_END) do |s|
         s.add_recurrence_rule IceCube::Rule.weekly(2)
       end
     end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DiscussionSessionManagerTest < ActiveSupport::TestCase
   setup do
-    travel_to '21-04-2024'.to_date
+    travel_to '22-04-2024'.to_date
   end
 
   test 'create a discussion session for this fortnight if none exists' do
