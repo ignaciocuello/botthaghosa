@@ -1,5 +1,8 @@
+# TODO: Please refactor this at some point...
 class TemplateEngine
   NOTIFY_COMMUNITY = <<~TEMPLATE
+    Hello 👋
+
     Here is a message that you can use to notify the community about the upcoming session in #general (just click on the copy button on the top right):
 
     ```
@@ -14,6 +17,8 @@ class TemplateEngine
 
   NOTIFY_BSV = <<~TEMPLATE
     Here is a message that you can use to notify the BSV communications team about the upcoming session by emailing **communications@bsv.net.au** and **secretary@bsv.net.au** (just click on the copy button on the top right):
+
+    Subject: Sutta discussion details for next session
 
     ```
     Hey,
@@ -33,6 +38,8 @@ class TemplateEngine
                .freeze
 
   DOCUMENT_SHARE = <<~TEMPLATE
+    Hello 👋
+
     Here is a message that you can use to share the document with everyone in #sutta_discussions (just click on the copy button on the top right):
 
     ```
@@ -57,10 +64,12 @@ class TemplateEngine
 
     Thanks to everyone that cast their vote. 🙏🙏🙏
     ```
+
+    I will me messaging you with reminders for tasks in the following days. 🙂
   TEMPLATE
               .freeze
 
-  # NOTE: is this used?
+  # NOTE: is this used?... don't think so
   SET_SESSION_DOCUMENT = <<~TEMPLATE
     Thanks! I have noted the discussion document for our next discussion on %<discussion_date>s as [%<session_document_title>s](%<session_document_link>s).
 

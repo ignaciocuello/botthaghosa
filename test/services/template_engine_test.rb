@@ -13,6 +13,8 @@ class TemplateEngineTest < ActiveSupport::TestCase
 
     Thanks to everyone that cast their vote. 🙏🙏🙏
     ```
+
+    I will me messaging you with reminders for tasks in the following days. 🙂
   TEMPLATE
              .freeze
 
