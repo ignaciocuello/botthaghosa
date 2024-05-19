@@ -32,7 +32,8 @@ class DiscussionSessionTest < ActiveSupport::TestCase
   end
 
   test 'set sutta, destroy any previously set sutta' do
-    discussion_session = create(:discussion_session, sutta: create(:sutta))
+    discussion_session = create(:discussion_session)
+    discussion_session.create_sutta!(**attributes_for(:sutta))
     old_sutta = discussion_session.sutta
 
     discussion_session.set_sutta(abbreviation: 'MN 1', title: 'The Root of All Things')
@@ -64,7 +65,8 @@ class DiscussionSessionTest < ActiveSupport::TestCase
   end
 
   test 'set session document and destroy any previously set document' do
-    discussion_session = create(:discussion_session, documents: [create(:document, :session)])
+    discussion_session = create(:discussion_session)
+    discussion_session.documents.create!(**attributes_for(:document, :session))
     old_document = discussion_session.session_document
 
     discussion_session.set_session_document(link: 'docs.google.com/document/123')
@@ -84,7 +86,8 @@ class DiscussionSessionTest < ActiveSupport::TestCase
   end
 
   test 'set task document and destroy any previously set document' do
-    discussion_session = create(:discussion_session, documents: [create(:document, :task)])
+    discussion_session = create(:discussion_session)
+    discussion_session.documents.create!(**attributes_for(:document, :task))
     old_document = discussion_session.task_document
 
     discussion_session.set_task_document(link: 'docs.google.com/document/123')
