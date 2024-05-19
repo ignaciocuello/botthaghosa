@@ -30,11 +30,11 @@ services:
         sync: false
 
   - type: cron
-    name: preparation
+    name: scheduled_messages
     env: ruby
-    schedule: '30 0 * * 1'
+    schedule: '30 0 * * *'
     buildCommand: 'bundle install'
-    startCommand: 'bundle exec rake preparation:start'
+    startCommand: 'bundle exec rake scheduled_messages:attempt'
     envVars:
       - key: DATABASE_URL
         fromDatabase:
