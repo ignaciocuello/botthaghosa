@@ -8,8 +8,11 @@ class Commands
       'On it! 🤖'
     end
 
-    def discussion_set_sutta(abbreviation:, title:)
-      DiscussionSessionManager.session_for_this_fortnight.set_sutta(abbreviation:, title:)
+    def discussion_set_sutta(abbreviation:, title:, logistics_user_id:)
+      session = DiscussionSessionManager.session_for_this_fortnight
+      session.set_sutta(abbreviation:, title:)
+      session.update!(logistics_user_id:)
+
       copy_sutta_template
       TemplateEngine.generate(:set_sutta)
     end

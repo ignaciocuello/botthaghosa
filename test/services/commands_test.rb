@@ -17,16 +17,19 @@ class CommandsTest < ActiveSupport::TestCase
   end
 
   test 'set sutta for discussion session and output template' do
-    create_session(with_sutta: false)
+    session = create_session(with_sutta: false)
 
     assert_difference -> { CopySuttaTemplateJob.jobs.size }, 1 do
       assert_difference -> { Sutta.count }, 1 do
-        output = Commands.discussion_set_sutta(
-          abbreviation: 'MN 1',
-          title: 'The Root of All Things'
-        )
+        assert_changes -> { session.reload.logistics_user_id }, from: nil do
+          output = Commands.discussion_set_sutta(
+            abbreviation: 'MN 1',
+            title: 'The Root of All Things',
+            logistics_user_id: '123'
+          )
 
-        assert_includes output, 'MN 1 - The Root of All Things'
+          assert_includes output, 'MN 1 - The Root of All Things'
+        end
       end
     end
   end

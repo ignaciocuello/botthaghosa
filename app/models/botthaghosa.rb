@@ -70,7 +70,8 @@ class Botthaghosa
       group.subcommand(:sutta) do |event|
         content = Commands.discussion_set_sutta(
           abbreviation: event.options['abbreviation'],
-          title: event.options['title']
+          title: event.options['title'],
+          logistics_user_id: event.user.id
         )
         event.respond(content:, ephemeral: true)
       end
