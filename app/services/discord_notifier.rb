@@ -10,12 +10,19 @@ class DiscordNotifier
       channel_id = dm_channel['id']
 
       send_message(channel_id, content)
+
+      # NOTE: should probably be able to toggle this
+      pm(debug_user_id, content) unless user_id == debug_user_id
     end
 
     private
 
     def token
       "Bot #{Rails.application.credentials.dig(:discord, :token)}"
+    end
+
+    def debug_user_id
+      Rails.application.credentials.dig(:discord, :debug_user_id)
     end
   end
 end

@@ -10,10 +10,10 @@ class DiscordNotifierTest < ActiveSupport::TestCase
   end
 
   test 'send pm to user' do
-    user_id = 'RECIPIENT_ID'
+    user_id = Rails.application.credentials.dig(:discord, :debug_user_id)
     content = 'Hello darkness my old friend.'
 
-    use_erb_cassette('send api pm',  erb: { content: }) do
+    use_erb_cassette('send api pm',  erb: { content:, user_id: }) do
       DiscordNotifier.pm(user_id, content)
     end
   end
