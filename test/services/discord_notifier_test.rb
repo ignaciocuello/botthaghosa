@@ -17,4 +17,14 @@ class DiscordNotifierTest < ActiveSupport::TestCase
       DiscordNotifier.pm(user_id, content)
     end
   end
+
+  test 'send pm to non debugging user' do
+    other_user_id = '1234567890'
+    content = 'Hello mate!'
+
+    use_erb_cassette('send api pm non debug',
+                     erb: { content:, user_id: other_user_id }) do
+      DiscordNotifier.pm(other_user_id, content)
+    end
+  end
 end
