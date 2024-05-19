@@ -16,10 +16,9 @@ class CopyTasksTemplateJob
 
   def notify_done
     message = TemplateEngine.generate(:start_preparation)
-    # TODO: move this messaging into a service too
-    bot = Botthaghosa.new
-    bot.run_in_background
-    bot.send_message(message)
-    bot.stop
+    DiscordNotifier.send_message(
+      Rails.application.credentials.dig(:discord, :message_channel_id),
+      message
+    )
   end
 end

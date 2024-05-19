@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://discord.com/api/v9/channels/<DISCORD_MESSAGE_CHANNEL_ID>/messages
+    body:
+      encoding: UTF-8
+      string: '{"content":"<%= content %>","tts":false,"embeds":null,"nonce":null,"allowed_mentions":null,"message_reference":null,"components":null}'
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '132'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 May 2024 07:28:14 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfruid=687164805c5c32c5129ef2c349c3d2e3017d0c7b-1716103694; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - __dcfduid=5a88e4a815b111ef8f8e9a27c3326886; Expires=Fri, 18-May-2029 07:28:14
+        GMT; Max-Age=157680000; Secure; HttpOnly; Path=/; SameSite=Lax
+      - __sdcfduid=5a88e4a815b111ef8f8e9a27c33268869bb72ad36f31cc82f27cd6258a64466cbcabbee6f9d719ad7cefd71bf8bfb84a;
+        Expires=Fri, 18-May-2029 07:28:14 GMT; Max-Age=157680000; Secure; HttpOnly;
+        Path=/; SameSite=Lax
+      - _cfuvid=Of7APslBfLsF.cKDdbfqtKJXSssLRcBJcWoMpnCf.94-1716103694517-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Ratelimit-Bucket:
+      - 3df15bae86f6647dd4dfcbd5c6949480
+      X-Ratelimit-Limit:
+      - '5'
+      X-Ratelimit-Remaining:
+      - '4'
+      X-Ratelimit-Reset:
+      - '1716103695.279'
+      X-Ratelimit-Reset-After:
+      - '1.000'
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Qdwjrte%2BhsdN%2FHsbb%2BEkmn6EfmnFgd4sBX5mc3PlSlhLD%2FqTOzKwAbtCWoG2QjhYFgkgLFORj6%2BgWgJqCfbQrHR4LsZp%2Be1euICv%2FvPpLF%2FG9tZwpa59MCef7gQY"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 88625e782bc02ed1-MEL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":0,"channel_id":"<DISCORD_MESSAGE_CHANNEL_ID>","content":"<%= content %>",
+        "attachments":[],"embeds":[],"timestamp":"2024-05-19T07:28:14.306000+00:00","edited_timestamp":null,"flags":0,"components":[],"id":"1241653630440964107","author":{"id":"<DISCORD_APP_ID>","username":"local-botthaghosa","avatar":"9ef403049c8dc4378fa59c79f5a6f2cf","discriminator":"3998","public_flags":0,"flags":0,"bot":true,"banner":null,"accent_color":null,"global_name":null,"avatar_decoration_data":null,"banner_color":null,"clan":null},"mentions":[],"mention_roles":[],"pinned":false,"mention_everyone":false,"tts":false,"referenced_message":null}
+
+        '
+  recorded_at: Sun, 19 May 2024 07:28:13 GMT
+recorded_with: VCR 6.2.0
