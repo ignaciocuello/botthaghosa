@@ -1,3 +1,4 @@
 <h1>Welcome!</h1>
 <p><%= "Currently logged in as #{@email}" %></p>
+<p><%= "File count: #{@file_count}" %></p>
 <%= button_to "Logout", destroy_admin_session_path, method: :delete %>

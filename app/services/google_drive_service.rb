@@ -26,13 +26,14 @@ class GoogleDriveService
     )
   end
 
-  private
-
-  def files(name:, parent_id: nil)
-    q = "name = '#{name}'"
+  def files(name: nil, parent_id: nil)
+    q = nil
+    q = "name = '#{name}'" if name.present?
     q += " and '#{parent_id}' in parents" if parent_id.present?
     @drive.list_files(q:, fields: 'files(id, parents)').files
   end
+
+  private
 
   def destination_directory_id(path:)
     directory_ids = []
