@@ -1,0 +1,179 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://discord.com/api/v9/users/@me/channels
+    body:
+      encoding: UTF-8
+      string: '{"recipient_id":"196433564659744768"}'
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '37'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 May 2024 10:57:00 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 8863904a2fb91f67-MEL
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cfruid=10ad8a41a3c8e2972d13c4decb91cef180c24c7a-1716116220; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - __dcfduid=84ca426c15ce11ef9d33ba2295539edb; Expires=Fri, 18-May-2029 10:57:00
+        GMT; Max-Age=157680000; Secure; HttpOnly; Path=/; SameSite=Lax
+      - __sdcfduid=84ca426c15ce11ef9d33ba2295539edb51721b277e7f320c130f7d1b449eeb5859e7ac5bde699b649cc745e9ffd73296;
+        Expires=Fri, 18-May-2029 10:57:00 GMT; Max-Age=157680000; Secure; HttpOnly;
+        Path=/; SameSite=Lax
+      - _cfuvid=Y.1T8pZr3v3rZkenTj6VoVXyvOeLuzCQfmjPJfjXulM-1716116220816-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      X-Content-Type-Options:
+      - nosniff
+      X-Ratelimit-Bucket:
+      - 3f1ecb90c49938368145d0f8794b2707
+      X-Ratelimit-Limit:
+      - '1000'
+      X-Ratelimit-Remaining:
+      - '999'
+      X-Ratelimit-Reset:
+      - '1716116220.683'
+      X-Ratelimit-Reset-After:
+      - '0.001'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=1yHj%2F6ADCILFfTlhNG2sPyfuFFDu50Z3F6f%2BNwSTg670F9Dde4kDl2m%2FMS7WPQjNviI%2FiA6j4KrRKYJhvvVSGiuXCfgt6t6jN4pzYFEBf8MIXzpD5nTLyAnaJv4k"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"1235938670410858556","type":1,"last_message_id":"1241705830936743946","flags":0,"recipients":[{"id":"196433564659744768","username":"icuello97","avatar":"044c7d2454574f09e69bb1761e524bda","discriminator":"0","public_flags":0,"flags":0,"banner":null,"accent_color":null,"global_name":"Ignacio","avatar_decoration_data":null,"banner_color":null,"clan":null}]}
+
+        '
+  recorded_at: Tue, 28 May 2024 14:00:00 GMT
+- request:
+    method: post
+    uri: https://discord.com/api/v9/channels/1235938670410858556/messages
+    body:
+      encoding: UTF-8
+      string: "{\"content\":\"Hello \U0001F44B\\n\\nHere is a message that you can
+        use to share the document with everyone in #sutta_discussions (just click
+        on the copy button on the top right):\\n\\n```\\nHey everyone! :wave: Here’s
+        the link to the session document for our upcoming sutta discussion happening
+        this Saturday at 7PM! :clock7: \\n\\n- [[NO SUTTA SET]]([NO SESSION DOCUMENT
+        SET])\\n\\nLooking forward to seeing you there!\\n```\\n\",\"tts\":false,\"embeds\":null,\"nonce\":null,\"allowed_mentions\":null,\"message_reference\":null,\"components\":null}"
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - DiscordBot (https://github.com/shardlab/discordrb, v3.5.0) rest-client/2.1.0
+        ruby/3.3.0p0 discordrb/3.5.0
+      Authorization:
+      - Bot <DISCORD_TOKEN>
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '519'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - discord.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 May 2024 10:57:01 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfruid=a02b973a9261abdd6113391f084c4361edd406b7-1716116221; path=/; domain=.discord.com;
+        HttpOnly; Secure; SameSite=None
+      - __dcfduid=8509f5ce15ce11ef809f02e90bb3b17b; Expires=Fri, 18-May-2029 10:57:01
+        GMT; Max-Age=157680000; Secure; HttpOnly; Path=/; SameSite=Lax
+      - __sdcfduid=8509f5ce15ce11ef809f02e90bb3b17bdde3494698b0a71b91453b389af0cc223f5a7d67eb83db0c110664ecee31afc1;
+        Expires=Fri, 18-May-2029 10:57:01 GMT; Max-Age=157680000; Secure; HttpOnly;
+        Path=/; SameSite=Lax
+      - _cfuvid=QqWjttytw7nXfYGa1rp6tEf6CuuaYvigiIJ5H.Cy.cU-1716116221232-0.0.1.1-604800000;
+        path=/; domain=.discord.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Ratelimit-Bucket:
+      - 3df15bae86f6647dd4dfcbd5c6949480
+      X-Ratelimit-Limit:
+      - '5'
+      X-Ratelimit-Remaining:
+      - '4'
+      X-Ratelimit-Reset:
+      - '1716116222.062'
+      X-Ratelimit-Reset-After:
+      - '1.000'
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=VkjXubep9xsfxK3YOX1scusRSAk4Sk4QRHOY6O6cbBaGYzl1Lphav6Poe433kYY7MV60GF1Tcb%2FRFOXazdO%2BJ3%2BSCmL8TBXsM5I8jng7X1SZUcxV9Pd0f1Ubbxz4"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - frame-ancestors 'none'; default-src 'none'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8863904c7e6429aa-MEL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":0,"channel_id":"1235938670410858556","content":"Hello \ud83d\udc4b\n\nHere
+        is a message that you can use to share the document with everyone in #sutta_discussions
+        (just click on the copy button on the top right):\n\n```\nHey everyone! :wave:
+        Here\u2019s the link to the session document for our upcoming sutta discussion
+        happening this Saturday at 7PM! :clock7: \n\n- [[NO SUTTA SET]]([NO SESSION
+        DOCUMENT SET])\n\nLooking forward to seeing you there!\n```","attachments":[],"embeds":[],"timestamp":"2024-05-19T10:57:01.094000+00:00","edited_timestamp":null,"flags":0,"components":[],"id":"1241706171597979718","author":{"id":"<DISCORD_APP_ID>","username":"local-botthaghosa","avatar":"9ef403049c8dc4378fa59c79f5a6f2cf","discriminator":"3998","public_flags":0,"flags":0,"bot":true,"banner":null,"accent_color":null,"global_name":null,"avatar_decoration_data":null,"banner_color":null,"clan":null},"mentions":[],"mention_roles":[],"pinned":false,"mention_everyone":false,"tts":false,"referenced_message":null}
+
+        '
+  recorded_at: Tue, 28 May 2024 14:00:00 GMT
+recorded_with: VCR 6.2.0

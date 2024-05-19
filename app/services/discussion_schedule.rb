@@ -16,6 +16,10 @@ class DiscussionSchedule
       (period_start + week_offset.weeks + day_offset.days + 19.hours).utc
     end
 
+    def current?(day_of_period)
+      Time.zone.today.day == current(day_of_period).day
+    end
+
     private
 
     def discussion_schedule
