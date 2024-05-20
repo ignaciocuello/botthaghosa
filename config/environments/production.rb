@@ -73,7 +73,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'https://botthaghosa.onrender.com', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'https://botthaghosa.onrender.com' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -98,4 +98,4 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
 
-Rails.application.routes.default_url_options = { host: 'https://botthaghosa.onrender.com', port: 3000 }
+Rails.application.routes.default_url_options = { host: 'https://botthaghosa.onrender.com' }
