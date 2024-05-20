@@ -4,6 +4,10 @@ class DiscordNotifier
       Discordrb::API::Channel.create_message(token, channel_id, content)
     end
 
+    def pm_debug(content)
+      pm(debug_user_id, content)
+    end
+
     def pm(user_id, content)
       response = Discordrb::API::User.create_pm(token, user_id)
       dm_channel = JSON.parse(response)
@@ -12,7 +16,7 @@ class DiscordNotifier
       send_message(channel_id, content)
 
       # NOTE: should probably be able to toggle this
-      pm(debug_user_id, content) unless debug?(user_id)
+      pm_debug(content) unless debug?(user_id)
     end
 
     private
