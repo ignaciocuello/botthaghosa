@@ -69,18 +69,6 @@ class TemplateEngine
   TEMPLATE
               .freeze
 
-  # NOTE: is this used?... don't think so
-  SET_SESSION_DOCUMENT = <<~TEMPLATE
-    Thanks! I have noted the discussion document for our next discussion on %<discussion_date>s as [%<session_document_title>s](%<session_document_link>s).
-
-    If you need quick access to it again, just type:
-
-    ```
-    /discussion get document
-    ```
-  TEMPLATE
-                         .freeze
-
   # TODO: @everyone
   START_PREPARATION = <<~TEMPLATE
     Hello all! 👋
@@ -106,7 +94,7 @@ class TemplateEngine
   TEMPLATE
                       .freeze
 
-  # TODO: get these from the DB
+  # TODO: get these from the doc
   class << self
     def generate(template_name, **args)
       return unless const_defined?(template_name.to_s.upcase)

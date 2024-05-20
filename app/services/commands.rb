@@ -21,22 +21,6 @@ class Commands
       TemplateEngine.generate(:get_session_links)
     end
 
-    def discussion_get_session_document
-      TemplateEngine.generate(:get_session_document)
-    end
-
-    def discussion_template_notify_community
-      TemplateEngine.generate(:notify_community)
-    end
-
-    def discussion_template_notify_bsv
-      TemplateEngine.generate(:notify_bsv)
-    end
-
-    def discussion_template_document_share
-      TemplateEngine.generate(:document_share)
-    end
-
     private
 
     def copy_task_template
