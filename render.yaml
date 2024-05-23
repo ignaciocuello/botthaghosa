@@ -51,7 +51,7 @@ services:
   - type: cron
     name: credentials_check
     env: ruby
-    schedule: '* */4 * * *'
+    schedule: '0 */4 * * *'
     buildCommand: 'bundle install'
     startCommand: 'bundle exec rake credentials:check'
     envVars:
