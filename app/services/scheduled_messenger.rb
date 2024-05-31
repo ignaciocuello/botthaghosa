@@ -22,8 +22,11 @@ class ScheduledMessenger
       notify_community = TemplateEngine.generate(:notify_community)
       DiscordNotifier.pm(logistics_user_id, notify_community)
 
-      notify_bsv = TemplateEngine.generate(:notify_bsv)
-      DiscordNotifier.pm(logistics_user_id, notify_bsv)
+      GmailService.new(credentials: AuthManager.credentials)
+                  .send_to_comms(
+                    subject: 'Sutta discussion details for next session',
+                    body: TemplateEngine.generate(:notify_bsv)
+                  )
       true
     end
 
