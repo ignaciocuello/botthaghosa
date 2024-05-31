@@ -89,3 +89,7 @@ gem 'google-apis-drive_v3', '~> 0.50.0'
 gem 'sidekiq', '~> 7.2'
 
 gem 'google-apis-docs_v1', '~> 0.26.0'
+
+gem "google-apis-gmail_v1", "~> 0.40.0"
+
+gem "rmail", "~> 1.1"

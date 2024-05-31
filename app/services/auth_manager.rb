@@ -2,7 +2,7 @@ class AuthManager
   class << self
     def authorizer
       client_id = Google::Auth::ClientId.from_hash(Rails.application.credentials[:google])
-      scope = ['https://www.googleapis.com/auth/drive']
+      scope = ['https://www.googleapis.com/auth/drive', 'https://mail.google.com/']
       token_store = Google::Auth::Stores::RedisTokenStore.new(redis: Redis.new)
       Google::Auth::WebUserAuthorizer.new(
         client_id, scope, token_store, '/oauth2_callback'
