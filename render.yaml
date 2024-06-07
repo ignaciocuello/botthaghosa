@@ -32,7 +32,7 @@ services:
   - type: cron
     name: scheduled_messages
     env: ruby
-    schedule: '30 0 * * *'
+    schedule: '0 8 * * *'
     buildCommand: 'bundle install'
     startCommand: 'bundle exec rake scheduled_messages:attempt'
     envVars:

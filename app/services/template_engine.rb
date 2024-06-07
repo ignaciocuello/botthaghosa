@@ -69,23 +69,40 @@ class TemplateEngine
 
     Here is the task document for the upcoming session on %<discussion_date>s:
 
-    - [%<task_document_title>s](%<task_document_link>s)
+    ✅ [%<task_document_title>s](%<task_document_link>s)
 
     Please put down your name against any role that you would like to do.
 
     Thank you. 🙏
   TEMPLATE
                       .freeze
+  # TODO: @everyone
+  PRE_SESSION_LINKS = <<~TEMPLATE
+    Hey all. ✌️
+
+    Here is a list of links for the session tonight:
+
+    📖 [%<session_document_title>s](<%<session_document_link>s>)
+  
+    ✅ [%<task_document_title>s](<%<task_document_link>s>) 
+
+    📝 [Miro Board](<%<miro_link>s>) 
+
+    👉 [Join Zoom Here](<%<zoom_session_link>s>)
+   TEMPLATE
+                      .freeze
 
   GET_SESSION_LINKS = <<~TEMPLATE
     Here are some links for the upcoming session:
 
-    - [%<session_document_title>s](%<session_document_link>s)
+    📖 [%<session_document_title>s](<%<session_document_link>s>)
+  
+    ✅ [%<task_document_title>s](<%<task_document_link>s>)  
 
-    - [%<task_document_title>s](%<task_document_link>s)
+    📝 [Miro Board](<%<miro_link>s>) 
 
-    - Zoom link: %<zoom_session_link>s
-  TEMPLATE
+    💻 <%<zoom_session_link>s>
+     TEMPLATE
                       .freeze
 
   # TODO: get these from the doc
@@ -111,7 +128,8 @@ class TemplateEngine
         session_document_title: discussion_session.session_document&.title || '[NO SESSION DOCUMENT SET]',
         task_document_link: discussion_session.task_document&.link || '[NO TASK DOCUMENT SET]',
         task_document_title: discussion_session.task_document&.title || '[NO TASK DOCUMENT SET]',
-        zoom_session_link: Rails.application.credentials.dig(:zoom, :session_link)
+        zoom_session_link: Rails.application.credentials.dig(:zoom, :session_link),
+        miro_link: Rails.application.credentials.dig(:miro, :link)
       }
     end
   end

@@ -4,6 +4,7 @@ class ScheduledMessenger
       return start_preparation if DiscussionSchedule.current?(:first_monday)
       return notify if DiscussionSchedule.current?(:second_monday)
       return share if DiscussionSchedule.current?(:second_wednesday)
+      return pre_link if DiscussionSchedule.current?(:second_saturday)
 
       false
     end
@@ -33,6 +34,16 @@ class ScheduledMessenger
     def share
       document_share = TemplateEngine.generate(:document_share)
       DiscordNotifier.pm(logistics_user_id, document_share)
+      true
+    end
+
+    def pre_link
+      message = TemplateEngine.generate(:pre_session_links)
+      DiscordNotifier.send_message(
+        Rails.application.credentials.dig(:discord, :message_channel_id),
+        message
+      )
+
       true
     end
 
